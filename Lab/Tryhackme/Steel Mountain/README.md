@@ -256,7 +256,7 @@ Mode              Size    Type  Last modified              Name
 100777/rwxrwxrwx  760320  fil   2014-02-16 15:58:52 -0500  hfs.exe
 ```
 
-┌──(kali㉿kali)-[~]
+┌──(kali㉿kali)-[~] <br>
 └─$ nano PowerUp.ps1 
 
 <img width="902" height="720" alt="image" src="https://github.com/user-attachments/assets/6d5881f1-58b9-4b7d-924f-cc5c090b70d2" />
