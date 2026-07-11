@@ -260,6 +260,7 @@ Mode              Size    Type  Last modified              Name
 └─$ nano PowerUp.ps1 
 
 <img width="902" height="720" alt="image" src="https://github.com/user-attachments/assets/6d5881f1-58b9-4b7d-924f-cc5c090b70d2" />
+<a href="PowerUp.ps1"><kbd>Xem</kbd></a>
 
 ```
 <#
