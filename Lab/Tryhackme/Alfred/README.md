@@ -44,6 +44,11 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-07-12 05:47:
 Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-07-12 05:47:15
 ```
 
+Download file 
+<a href="Invoke-PowerShellTcp.ps1">
+  <kbd>File Invoke-PowerShellTcp.ps1 </kbd>
+</a>
+
 <img width="946" height="182" alt="image" src="https://github.com/user-attachments/assets/0bbac368-c6db-4036-a933-75dfb4422db9" /> <br>
 
 <img width="1280" height="800" alt="image" src="https://github.com/user-attachments/assets/97a87c0e-43e5-472e-b3d7-27327386c5e7" /> <br>
