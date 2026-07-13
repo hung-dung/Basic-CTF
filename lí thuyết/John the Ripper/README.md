@@ -7,7 +7,7 @@ Cú pháp cơ bản của John the Ripper
 
 Các lệnh như sau. Chúng ta sẽ tìm hiểu các tùy chọn và bổ ngữ cụ thể được sử dụng khi chúng ta dùng chúng.
 
-john [options] [file path]
+<p style=" color: yellow"> john [options] [file path] </p>
 
 john: Kích hoạt chương trình John the Ripper
 [options]: Chỉ định các tùy chọn bạn muốn sử dụng
