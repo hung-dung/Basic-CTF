@@ -1,6 +1,8 @@
+```
 ┌──(kali㉿kali)-[~] <br>
 └─$ echo "root:x:0:0::/root:/bin/bash" > local_passwd.txt <br>
-                                                        ┌──(kali㉿kali)-[~] <br>
+```
+                                                      ┌──(kali㉿kali)-[~] <br>
 └─$ nano local_shadow.txt
 
 ```
