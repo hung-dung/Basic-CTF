@@ -41,3 +41,12 @@ Lưu ý về định dạng:
 Khi bạn bảo John sử dụng các định dạng, nếu bạn đang làm việc với một kiểu băm chuẩn, ví dụ:
 
 Như trong ví dụ trên, bạn phải thêm tiền tố là raw-Bạn có thể nói với John rằng bạn chỉ đang làm việc với một kiểu băm tiêu chuẩn, mặc dù điều này không phải lúc nào cũng đúng. Để kiểm tra xem bạn có cần thêm tiền tố hay không, bạn có thể liệt kê tất cả các định dạng của John bằng cách sử dụng `john --list=formats`và kiểm tra thủ công hoặc tìm kiếm kiểu băm của bạn bằng một công cụ như sau: `john --list=formats | grep -iF "md5" `.
+
+
+NTHash / NTLM
+NThash là định dạng băm mà các máy tính chạy hệ điều hành Windows hiện đại sử dụng để lưu trữ mật khẩu người dùng và dịch vụ. Nó cũng thường được gọi là...NTLM, điều này đề cập đến phiên bản trước của định dạng băm mật khẩu của Windows được gọi là LM, do đó là NT/LM.
+
+Một chút lịch sử: ký hiệu NT cho các sản phẩm Windows ban đầu có nghĩa là Công nghệ Mới. Nó được sử dụng bắt đầu từ Windows NT để chỉ các sản phẩm không được xây dựng từ nền tảng MS-DOS. Cuối cùng, dòng "NT" trở thành loại hệ điều hành tiêu chuẩn được Microsoft phát hành, và tên gọi này đã bị loại bỏ, nhưng nó vẫn còn tồn tại trong tên của một số công nghệ của Microsoft.
+
+Trong Windows, SAM (Security Account Manager) được sử dụng để lưu trữ thông tin tài khoản người dùng, bao gồm tên người dùng và mật khẩu đã được mã hóa. Bạn có thể tải xuống NTHash/NTLM
+Tìm mã băm bằng cách sao lưu cơ sở dữ liệu SAM trên máy tính Windows, sử dụng công cụ như Mimikatz hoặc sử dụng cơ sở dữ liệu Active Directory: `NTDS.dit` Bạn có thể không cần phải bẻ khóa mã băm để tiếp tục leo thang đặc quyền, vì bạn thường có thể thực hiện tấn công "truyền mã băm" thay thế, nhưng đôi khi, bẻ khóa mã băm là một lựa chọn khả thi nếu chính sách mật khẩu yếu. 
