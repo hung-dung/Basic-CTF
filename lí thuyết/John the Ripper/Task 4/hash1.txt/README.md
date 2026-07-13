@@ -7,7 +7,7 @@
 └─$ cat hash.txt 
 2e728dd31fb5949bc39cac5a9f066498
 
-┌──(kali㉿kali)-[~] <b>
+┌──(kali㉿kali)-[~] <br>
 └─$ john --format=raw-md5 --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
 
 ```
