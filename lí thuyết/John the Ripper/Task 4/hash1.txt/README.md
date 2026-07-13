@@ -1,4 +1,10 @@
-<img width="918" height="125" alt="Screenshot 2026-07-13 162445" src="https://github.com/user-attachments/assets/ce36372b-913f-441c-9992-032b6e040572" />
+HASH: 2e728dd31fb5949bc39cac5a9f066498
+
+```
+Possible Hashs:
+[+] MD5
+[+] Domain Cached Credentials - MD4(MD4(($pass)).(strtolower($username)))
+```
 
 ┌──(kali㉿kali)-[~] <br>
 └─$ echo "2e728dd31fb5949bc39cac5a9f066498" > hash.txt
