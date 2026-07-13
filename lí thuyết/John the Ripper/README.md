@@ -51,3 +51,40 @@ Một chút lịch sử: ký hiệu NT cho các sản phẩm Windows ban đầu 
 
 Trong Windows, SAM (Security Account Manager) được sử dụng để lưu trữ thông tin tài khoản người dùng, bao gồm tên người dùng và mật khẩu đã được mã hóa. Bạn có thể tải xuống NTHash/NTLM
 Tìm mã băm bằng cách sao lưu cơ sở dữ liệu SAM trên máy tính Windows, sử dụng công cụ như Mimikatz hoặc sử dụng cơ sở dữ liệu Active Directory: `NTDS.dit` Bạn có thể không cần phải bẻ khóa mã băm để tiếp tục leo thang đặc quyền, vì bạn thường có thể thực hiện tấn công "truyền mã băm" thay thế, nhưng đôi khi, bẻ khóa mã băm là một lựa chọn khả thi nếu chính sách mật khẩu yếu. 
+
+Giải mã băm từ /etc/shadow <br>
+
+/etc/shadow là tệp trên máy Linux nơi lưu trữ các mã băm mật khẩu. Nó cũng lưu trữ các thông tin khác, chẳng hạn như ngày thay đổi mật khẩu lần cuối và thông tin về thời hạn hết hạn của mật khẩu. Mỗi dòng chứa một mục nhập cho mỗi người dùng hoặc tài khoản người dùng của hệ thống. Tệp này thường chỉ có thể truy cập được bởi người dùng root, vì vậy bạn phải có đủ đặc quyền để truy cập các mã băm. Tuy nhiên, nếu bạn có đủ đặc quyền, bạn có khả năng sẽ giải mã được một số mã băm đó.
+
+Unshadow
+
+John rất khắt khe về định dạng dữ liệu cần thiết để có thể làm việc với nó; vì lý do này, để bẻ khóa... `/etc/shadow`, bạn phải kết hợp nó với `/etc/passwd` Tệp này giúp John hiểu được dữ liệu được cung cấp. Để làm điều này, chúng tôi sử dụng một công cụ được tích hợp sẵn trong bộ công cụ của John, có tên là... `unshadow `Cú pháp cơ bản của unshadowCụ thể như sau:
+
+`unshadow [path to passwd] [path to shadow]`
+
+    `unshadow`: Kích hoạt công cụ bỏ bóng
+    `[path to passwd]`: Tệp chứa bản sao của /etc/passwdtập tin bạn đã lấy từ máy tính trong phòng thí nghiệm
+    `[path to shadow]`: Tệp chứa bản sao của /etc/shadowtập tin bạn đã lấy từ máy tính trong phòng thí nghiệm
+
+Ví dụ sử dụng:
+
+`unshadow local_passwd local_shadow > unshadowed.txt`
+
+Ghi chú về các tệp
+
+Khi sử dụng `unshadow` Bạn có thể sử dụng toàn bộ `/etc/passwd` Và `/etc/shadow`, giả sử bạn có sẵn chúng, hoặc bạn có thể sử dụng dòng liên quan từ mỗi tệp, ví dụ:
+
+TỆP 1 - local_passwd
+
+Chứa /etc/passwd` dòng lệnh dành cho người dùng root:
+
+`root:x:0:0::/root:/bin/bash`
+
+TỆP 2 - local_shadow
+
+Chứa `/etc/shadow` dòng lệnh dành cho người dùng root: `root:$6$2nwjN454g.dv4HN/$m9Z/r2xVfweYVkrr.v5Ft8Ws3/YYksfNwq96UL1FX0OJjY1L6l.DS3KEVsZ9rOVLB/ldTeEL/OIhJZ4GMFMGA0:18576::::::`
+Phá vỡ
+
+Sau đó, chúng ta có thể đưa đầu ra từ vào. `unshadow`, trong trường hợp sử dụng ví dụ của chúng tôi được gọi là `unshadowed.txt` Trực tiếp vào John. Chúng ta không cần phải chỉ định chế độ ở đây vì chúng ta đã tạo đầu vào dành riêng cho John; tuy nhiên, trong một số trường hợp, bạn sẽ cần chỉ định định dạng như chúng ta đã làm trước đây bằng cách sử dụng: `--format=sha512crypt`
+
+`john --wordlist=/usr/share/wordlists/rockyou.txt --format=sha512crypt unshadowed.txt`
