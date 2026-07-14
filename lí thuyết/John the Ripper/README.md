@@ -88,3 +88,44 @@ Phá vỡ
 Sau đó, chúng ta có thể đưa đầu ra từ vào. `unshadow`, trong trường hợp sử dụng ví dụ của chúng tôi được gọi là `unshadowed.txt` Trực tiếp vào John. Chúng ta không cần phải chỉ định chế độ ở đây vì chúng ta đã tạo đầu vào dành riêng cho John; tuy nhiên, trong một số trường hợp, bạn sẽ cần chỉ định định dạng như chúng ta đã làm trước đây bằng cách sử dụng: `--format=sha512crypt`
 
 `john --wordlist=/usr/share/wordlists/rockyou.txt --format=sha512crypt unshadowed.txt`
+
+John cũng có một chế độ khác, được gọi là chế độ Bẻ khóa đơn lẻ . Trong chế độ này, John chỉ sử dụng thông tin được cung cấp trong tên người dùng để cố gắng tìm ra các mật khẩu khả thi bằng cách thay đổi nhẹ các chữ cái và số có trong tên người dùng.
+
+Biến đổi từ ngữ
+
+Cách tốt nhất để giải thích chế độ Single Crack và word mangling là thông qua một ví dụ:
+
+Hãy xem xét tên người dùng “Markus”.
+
+Một số mật khẩu khả thi có thể là:
+
+    Markus1, Markus2, Markus3 (v.v.)
+    MARkus, MARkus, MARKus (v.v.)
+    Markus!, Markus$, Markus* (v.v.)
+
+Kỹ thuật này được gọi là biến đổi từ ngữ (word mangling). John xây dựng từ điển của mình dựa trên thông tin được cung cấp và sử dụng một tập hợp các quy tắc gọi là "quy tắc biến đổi từ ngữ", xác định cách nó có thể biến đổi từ ban đầu để tạo ra một danh sách từ dựa trên các yếu tố liên quan đến mục tiêu mà bạn đang cố gắng bẻ khóa. Điều này khai thác điểm yếu của mật khẩu dựa trên thông tin về tên người dùng hoặc dịch vụ mà người dùng đang đăng nhập.
+GECOS
+
+Phương pháp mã hóa từ ngữ của John cũng tương thích với trường GECOS của hệ điều hành UNIX, cũng như các hệ điều hành tương tự UNIX khác như... LINUX GECOS
+
+GECOS là viết tắt của General Electric Comprehensive Operating System (Hệ điều hành toàn diện của General Electric). Trong bài tập trước, chúng ta đã xem xét các mục nhập cho cả hai. `/etc/shadow` Và `/etc/passwd` Nếu quan sát kỹ, bạn sẽ thấy các trường được phân tách bằng dấu hai chấm. :Trường thứ năm trong bản ghi tài khoản người dùng là trường GECOS. Nó lưu trữ thông tin chung về người dùng, chẳng hạn như họ tên đầy đủ, số văn phòng và số điện thoại, cùng nhiều thông tin khác. John có thể lấy thông tin được lưu trữ trong các bản ghi đó, chẳng hạn như họ tên đầy đủ và tên thư mục nhà, để thêm vào danh sách từ mà nó tạo ra khi bẻ khóa. `/etc/shadow` Các hàm băm với chế độ bẻ khóa đơn.
+Sử dụng chế độ nứt đơn
+
+Để sử dụng chế độ bẻ khóa đơn lẻ, chúng ta sử dụng cú pháp tương tự như đã sử dụng trước đây; ví dụ, nếu muốn bẻ khóa mật khẩu của người dùng có tên “Mike”, bằng chế độ đơn lẻ, chúng ta sẽ sử dụng:
+
+`john --single --format=[format] [path to file]`
+
+    --singleCờ này báo cho John biết bạn muốn sử dụng chế độ bẻ khóa băm đơn.
+    --format=[format]Như mọi khi, việc xác định đúng định dạng là vô cùng quan trọng.
+
+Ví dụ sử dụng:
+
+`john --single --format=raw-sha256 hashes.txt`
+
+Lưu ý về định dạng tập tin ở chế độ bẻ khóa đơn:
+
+Nếu bạn đang bẻ khóa mã băm ở chế độ bẻ khóa đơn lẻ, bạn cần thay đổi định dạng tệp mà bạn cung cấp cho John để nó hiểu dữ liệu nào cần dùng để tạo danh sách từ. Bạn thực hiện điều này bằng cách thêm tên người dùng mà mã băm đó thuộc về vào đầu mã băm, vì vậy theo ví dụ trên, chúng ta sẽ thay đổi tệp `hashes.txt`
+
+Từ `1efee03cdcb96d90ad48ccc7b8666033`
+
+ĐẾN `mike:1efee03cdcb96d90ad48ccc7b8666033`
