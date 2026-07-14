@@ -24,6 +24,10 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 342.82 seconds
 
 ```
+<img width="788" height="593" alt="image" src="https://github.com/user-attachments/assets/9b1aca78-3c0f-47d4-a498-5bcbccfbc00e" />
+
+<img width="1145" height="592" alt="image" src="https://github.com/user-attachments/assets/b36bb524-6227-4740-8498-4e199ec371b0" />
+
 
 msfconsole
 
