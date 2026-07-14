@@ -250,3 +250,30 @@ Phá vỡ
 Một lần nữa, chúng ta có thể lấy tập tin mà chúng ta đã xuất ra. `rar2john` trong trường hợp sử dụng ví dụ của chúng tôi, `rar_hash.txt` và chuyển trực tiếp cho John như chúng ta đã làm với `zip2john`.
 
 `john --wordlist=/usr/share/wordlists/rockyou.txt rar_hash.txt`
+
+Phá vỡ SSH Mật khẩu chính
+
+Chúng ta hãy cùng khám phá thêm một cách sử dụng John nữa, thường xuyên xuất hiện trong các thử thách CTF — sử dụng John để bẻ khóa... SSH
+mật khẩu khóa riêng tư của `id_rsa` các tập tin. Trừ khi được cấu hình khác, bạn xác thực đăng nhập SSH bằng mật khẩu. Tuy nhiên, bạn có thể cấu hình xác thực dựa trên khóa, cho phép bạn sử dụng khóa riêng của mình, `id_rsa` được sử dụng như một khóa xác thực để đăng nhập vào máy tính từ xa qua SSH Tuy nhiên, việc này thường yêu cầu mật khẩu để truy cập khóa riêng; ở đây, chúng ta sẽ sử dụng John để phá mật khẩu này nhằm cho phép xác thực SSH
+sử dụng chìa khóa.
+
+SSH2John
+
+Ai mà ngờ được, lại thêm một công cụ chuyển đổi nữa chứ? Vâng, đó chính là điều làm việc với John. Như tên gọi đã gợi ý, `ssh2john` chuyển đổi `id_rsa` Khóa riêng tư, được sử dụng để đăng nhập vào phiên SSH, được chuyển đổi thành định dạng băm mà John có thể sử dụng. Nói đùa vậy thôi, đây lại là một ví dụ tuyệt vời khác về tính linh hoạt của John. Cú pháp gần giống như bạn mong đợi. Lưu ý rằng nếu bạn không có `ssh2john` đã được cài đặt, bạn có thể sử dụng ssh2john.py, nằm ở /opt/john/ssh2john.pyNếu bạn đang thực hiện việc này trên AttackBox, hãy thay thế `ssh2john` lệnh với `python3 /opt/john/ssh2john.py` hoặc vào ngày Kali, `python /usr/share/john/ssh2john.py`
+
+`ssh2john [id_rsa private key file] > [output file]`
+
+    ssh2john: Kích hoạt ssh2john dụng cụ
+    [id_rsa private key file]: Đường dẫn đến tệp id_rsa mà bạn muốn lấy mã băm của nó.
+    >: Đây là bộ điều hướng đầu ra. Chúng ta đang sử dụng nó để chuyển hướng đầu ra từ lệnh này sang một tệp khác.
+    [output file]: Đây là tệp sẽ lưu trữ kết quả đầu ra từ
+
+Ví dụ sử dụng
+
+`/opt/john/ssh2john.py id_rsa > id_rsa_hash.txt`
+
+Phá vỡ
+
+Lần cuối cùng, chúng ta sẽ sử dụng tập tin mà ssh2john xuất ra, trong ví dụ này tập tin đó có tên là... `id_rsa_hash.txt` và, như chúng ta đã làm với `rar2john` Chúng ta có thể sử dụng điều này một cách liền mạch với John:
+
+`john --wordlist=/usr/share/wordlists/rockyou.txt id_rsa_hash.txt`
