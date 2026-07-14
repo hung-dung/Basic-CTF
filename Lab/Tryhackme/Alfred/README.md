@@ -15,8 +15,7 @@ Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 1324.49 seconds
 ```
-
-<img width="1502" height="620" alt="image" src="https://github.com/user-attachments/assets/61221b75-f31f-48a8-a49b-92ddc2db326a" />
+<img width="1391" height="660" alt="image" src="https://github.com/user-attachments/assets/9a52e8f3-229a-431c-9b9b-bd52c7e1bff5" />
 
 <img width="697" height="418" alt="image" src="https://github.com/user-attachments/assets/9be0cc68-39c3-45b9-a885-99cd787a9c07" />
 
