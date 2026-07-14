@@ -225,3 +225,28 @@ Phá vỡ
 Sau đó, chúng ta có thể lấy tập tin mà chúng ta đã xuất ra. `zip2john` trong trường hợp sử dụng ví dụ của chúng tôi, `zip_hash.txt` và, như chúng ta đã làm với `unshadow` Hãy chuyển trực tiếp dữ liệu đó cho John vì chúng ta đã tạo đầu vào dành riêng cho việc này.
 
 `john --wordlist=/usr/share/wordlists/rockyou.txt zip_hash.txt`
+
+Giải mã tệp lưu trữ RAR được bảo vệ bằng mật khẩu
+
+Chúng ta có thể sử dụng quy trình tương tự như quy trình đã dùng trong bài tập trước để lấy mật khẩu cho các tệp lưu trữ RAR. Nếu bạn chưa biết, các tệp lưu trữ RAR là các tệp nén được tạo bởi trình quản lý tệp lưu trữ WinRAR. Giống như các tệp Zip, chúng nén các thư mục và tệp.
+
+Rar2John
+
+Gần như giống hệt với `zip2john` công cụ, chúng ta sẽ sử dụng `rar2john` Công cụ chuyển đổi tập tin RAR sang định dạng băm mà John có thể hiểu được. Cú pháp cơ bản như sau:
+
+`rar2john [rar file] > [output file]`
+
+    rar2john: Kích hoạt rar2john dụng cụ
+    [rar file]Đường dẫn đến tệp RAR mà bạn muốn lấy mã băm của tệp đó.
+    >Lệnh này chuyển hướng đầu ra của lệnh này sang một tệp khác.
+    [output file]Đây là tệp sẽ lưu trữ kết quả đầu ra từ lệnh.
+
+Ví dụ sử dụng
+
+`/opt/john/rar2john rarfile.rar > rar_hash.txt`
+
+Phá vỡ
+
+Một lần nữa, chúng ta có thể lấy tập tin mà chúng ta đã xuất ra. `rar2john` trong trường hợp sử dụng ví dụ của chúng tôi, `rar_hash.txt` và chuyển trực tiếp cho John như chúng ta đã làm với `zip2john`.
+
+`john --wordlist=/usr/share/wordlists/rockyou.txt rar_hash.txt`
