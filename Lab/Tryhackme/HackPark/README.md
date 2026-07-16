@@ -8,10 +8,11 @@
 
 <img width="482" height="646" alt="image" src="https://github.com/user-attachments/assets/b9dc3cff-49d3-4ead-a8d3-5810acca33e2" />
 
-Yêu cầu 
-`hydra -P <wordlist> -v <ip> <protocol>` 	T
-`hydra -v -V -u -L <username list> -P <password list> -t 1 -u <ip> <protocol>` 	
-`hydra -t 1 -V -f -l <username> -P <wordlist> rdp://<ip>`
+Cu phap
+
+`hydra -P <wordlist> -v <ip> <protocol>` 	<br>
+`hydra -v -V -u -L <username list> -P <password list> -t 1 -u <ip> <protocol>` 	<br>
+`hydra -t 1 -V -f -l <username> -P <wordlist> rdp://<ip>`<br>
 `hydra -l <username> -P .<password list> $ip -V http-form-post '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:S=Location'`
 
 ```
