@@ -31,3 +31,9 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-07-16 10:41:
 <img width="637" height="773" alt="image" src="https://github.com/user-attachments/assets/4a179d0b-ea2d-4eca-b87d-0b3881809438" />
 
 <img width="796" height="495" alt="image" src="https://github.com/user-attachments/assets/d017e6b9-6ebe-4ccc-b22d-3ac92077b46c" />
+
+Change IP_ATTACKER in `exploit.cs` file
+
+<img width="937" height="371" alt="image" src="https://github.com/user-attachments/assets/0e692f2d-01d1-471d-b209-477f81828b8d" />
+
+
