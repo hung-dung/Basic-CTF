@@ -73,7 +73,7 @@ Lệnh SMBClient
 
 Sau khi vào thư mục chia sẻ, bạn có thể xem các lệnh có sẵn bằng cách gõ "help". Các lệnh hữu ích nhất bao gồm:
 
-ls hoặc dir : Liệt kê các tập tin và thư mục.
-cd [DIR] : Di chuyển đến thư mục khác
-get [FILE] : Tải tập tin xuống AttackBox của bạn
+`ls` hoặc `dir` : Liệt kê các tập tin và thư mục. <br>
+`cd [DIR]` : Di chuyển đến thư mục khác <br>
+`get [FILE]` : Tải tập tin xuống AttackBox của bạn <br>
 
