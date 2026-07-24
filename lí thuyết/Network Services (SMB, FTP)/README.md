@@ -39,15 +39,15 @@ Enum4linux là một công cụ được sử dụng để liệt kê. SMB chia 
 Cú pháp của Enum4Linux rất hay và đơn giản: `enum4linux [options] ip`
 
 CHỨC NĂNG THẺ
-
--U lấy danh sách người dùng
+```
+-U lấy danh sách người dùng 
 -M lấy danh sách máy
 -N lấy bản sao danh sách tên (khác với -U và -M)
 -S lấy danh sách chia sẻ
 -P lấy thông tin chính sách mật khẩu
 -G lấy danh sách nhóm và thành viên
 -a tất cả những điều trên (liệt kê cơ bản đầy đủ)
-
+```
 Các loại SMB Khai thác
 
 Mặc dù có những lỗ hổng bảo mật như CVE-2017-7494 có thể cho phép thực thi mã từ xa bằng cách khai thác lỗ hổng bảo mật. SMB Trong trường hợp này, bạn sẽ dễ gặp phải tình huống mà cách tốt nhất để xâm nhập vào hệ thống là do cấu hình sai trong hệ thống. Chúng ta sẽ khai thác lỗ hổng bảo mật ẩn danh. SMB Chia sẻ quyền truy cập - một lỗi cấu hình phổ biến có thể cho phép chúng ta thu thập thông tin dẫn đến việc chiếm quyền điều khiển hệ thống.
