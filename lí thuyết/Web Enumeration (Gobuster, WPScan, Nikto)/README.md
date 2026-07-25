@@ -1,3 +1,20 @@
+II. WPScan:
+
+Giới thiệu về WPScan
+
+Được phát hành lần đầu vào tháng 6 năm 2011, WPScan đã vượt qua thử thách của thời gian và nổi bật như một công cụ mà mọi chuyên gia kiểm thử xâm nhập nên có trong bộ công cụ của mình.
+
+Khung WPScan có khả năng liệt kê và nghiên cứu một số loại lỗ hổng bảo mật hiện có trong các trang web WordPress - bao gồm nhưng không giới hạn ở:
+```
+Tiết lộ thông tin nhạy cảm (Phiên bản cài đặt Plugin & Theme cho các lỗ hổng đã được tiết lộ hoặc CVE'S)
+Tìm kiếm đường dẫn (Tìm kiếm các quyền truy cập tệp bị cấu hình sai, ví dụ như wp-config.php)
+Chính sách mật khẩu yếu (tấn công vét cạn mật khẩu)
+Sự hiện diện của cài đặt mặc định (Đang tìm kiếm các tệp mặc định)
+Kiểm tra tường lửa ứng dụng web (các plugin WAF phổ biến) 
+```
+
+
+
 III. NIKTO:
 
 Giới thiệu về Nikto
