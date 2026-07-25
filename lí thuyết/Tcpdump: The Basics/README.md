@@ -61,11 +61,11 @@ tcpdump -nn	Không phân giải địa chỉ IP và không phân giải số gia
 tcpdump -v	Hiển thị chi tiết; mức độ chi tiết có thể được tăng lên bằng cách sử dụng `-vv` và `-vvv`
 ```
 Hãy xem xét các ví dụ sau:
-
+```
 `tcpdump -i eth0 -c 50 -v` Chương trình thu thập và hiển thị 50 gói dữ liệu bằng cách lắng nghe trên `eth0` giao diện, là giao diện Ethernet có dây, và hiển thị chúng một cách chi tiết.
 `tcpdump -i wlo1 -w data.pcap` Chương trình thu thập các gói dữ liệu bằng cách lắng nghe trên `wlo1` giao diện (giao diện WiFi) và ghi các gói dữ liệu đó vào `data.pcap`. Quá trình này sẽ tiếp tục cho đến khi người dùng ngắt quá trình thu thập bằng cách nhấn CTRL-C.
 `tcpdump -i any -nn` Thu thập các gói dữ liệu trên tất cả các giao diện và hiển thị chúng trên màn hình mà không cần phân giải tên miền hoặc giao thức
-
+```
 Mặc dù bạn có thể chạy `tcpdump` mà không cần cung cấp bất kỳ biểu thức lọc nào, nhưng điều này sẽ không hữu ích. Giống như trong một buổi gặp gỡ xã giao, bạn không cố gắng lắng nghe tất cả mọi người cùng một lúc; bạn sẽ tập trung chú ý vào một người hoặc một cuộc trò chuyện cụ thể hơn. Xét đến số lượng gói tin mà card mạng của chúng ta nhận được, việc xem xét mọi thứ cùng một lúc là không thể; chúng ta cần phải cụ thể và thu thập những gì chúng ta quan tâm để kiểm tra.
 
 Lọc theo máy chủ
@@ -141,7 +141,7 @@ Ba toán tử logic có thể hữu ích:
 `not`: Bắt giữ các gói tin khi điều kiện không đúng. Ví dụ: `tcpdump not tcp` bắt giữ tất cả các gói tin ngoại trừ TCP phân đoạn; chúng tôi dự kiến ​​sẽ tìm thấy các gói UDP, ICMP và ARP trong số các kết quả.
 ```
 Tóm tắt và ví dụ
-
+```
 `tcpdump host IP` hoặc `tcpdump host HOSTNAME` :Lọc các gói tin theo địa chỉ IP hoặc tên máy chủ.
 tcpdump src host IPhoặc	Lọc các gói tin theo máy chủ nguồn cụ thể
 `tcpdump dst host IP`	Lọc các gói tin theo máy chủ đích cụ thể
@@ -149,13 +149,13 @@ tcpdump src host IPhoặc	Lọc các gói tin theo máy chủ nguồn cụ thể
 `tcpdump src port PORT_NUMBER`	Lọc các gói tin theo số cổng nguồn được chỉ định.
 `tcpdump dst port PORT_NUMBER`	Lọc các gói tin theo số cổng đích được chỉ định.
 `tcpdump PROTOCOL`	Lọc các gói dữ liệu theo giao thức; ví dụ bao gồm ip, ip6, và icmp
-
+```
 Hãy xem xét các ví dụ sau:
-
+```
 `tcpdump -i any tcp port 22` Nó lắng nghe trên tất cả các giao diện và bắt giữ tcp các gói tin đến hoặc đi từ đó port 22, ví dụ như lưu lượng SSH.
 `tcpdump -i wlo1 udp port 123` Nó lắng nghe trên card mạng WiFi và lọc udp lưu lượng truy cập đến port 123 Giao thức Thời gian Mạng (NTP).
 `tcpdump -i eth0 host example.com and tcp port 443 -w https.pcap` Lệnh này sẽ lắng nghe trên eth0giao diện Ethernet có dây và lọc lưu lượng truy cập được trao đổi với example.comgiao diện sử dụng tcp và port 443. Nói cách khác, lệnh này đang lọc lưu lượng HTTPS liên quan đến example.com.
-
+```
 Đối với các câu hỏi trong bài tập này, chúng ta sẽ đọc các gói tin đã được ghi lại từ `traffic.pcap` tệp. Như đã đề cập trước đó, chúng ta sử dụng `-r FILE` tệp ghi lại gói tin để đọc dữ liệu. Để kiểm tra điều này, hãy thử lệnh `tcpdump -r traffic.pcap -c 5 -n`; nó sẽ hiển thị năm gói tin đầu tiên trong tệp mà không cần tra cứu địa chỉ IP.
 
 Hãy nhớ rằng bạn có thể đếm số dòng bằng cách chuyển hướng đầu ra thông qua `wc` lệnh. Trong cửa sổ terminal bên dưới, chúng ta có thể thấy có 910 gói tin với địa chỉ IP nguồn được đặt là 192.168.124.1. Xin lưu ý rằng chúng ta thêm vào `-n` để tránh sự chậm trễ không cần thiết khi cố gắng phân giải địa chỉ IP. Trong ví dụ bên dưới, chúng ta không sử dụng `sudo` vì việc đọc từ tệp ghi lại gói tin không yêu cầu `root đặc quyền.
@@ -178,11 +178,11 @@ Byte tiêu đề
 Mục đích của phần này là để có thể lọc các gói tin dựa trên nội dung của một byte tiêu đề. Hãy xem xét các giao thức sau: ARP, Ethernet, ICMP, IP, TCP và UDP. Đây chỉ là một vài giao thức mạng mà chúng ta đã nghiên cứu. Làm thế nào chúng ta có thể hướng dẫn Tcpdump lọc các gói tin dựa trên nội dung của các byte tiêu đề giao thức? (Chúng ta sẽ không đi sâu vào chi tiết về tiêu đề của từng giao thức vì điều này nằm ngoài phạm vi của phần này; thay vào đó, chúng ta sẽ tập trung vào các cờ TCP.)
 
 Sử dụng pcap-filter, Tcpdump cho phép bạn tham chiếu đến nội dung của bất kỳ byte nào trong phần tiêu đề bằng cú pháp sau `proto[expr:size]`, trong đó:
-
+```
 `proto` : ký hiệu này đề cập đến giao thức. Ví dụ, arp, ether, icmp, ip, ip6, tcp, và udpđề cập đến ARP, Ethernet, ICMP, IPv4, IPv6, TCP vàUDPtương ứng.
 `expr` : Biểu thị độ lệch byte, trong đó 0 đề cập đến byte đầu tiên.
 `size` : Tham số này cho biết số byte mà chúng ta quan tâm, có thể là một, hai hoặc bốn. Tham số này là tùy chọn và mặc định là một.
-
+```
 Để hiểu rõ hơn điều này, hãy xem xét hai ví dụ sau từ trang hướng dẫn sử dụng pcap-filter (và đừng lo lắng nếu bạn thấy chúng khó hiểu):
 
 `ether[0] & 1 != 0` : Hàm này lấy byte đầu tiên trong tiêu đề Ethernet và số thập phân 1 (tức là 0000 0001 trong hệ nhị phân) và áp dụng phép &toán AND (phép toán nhị phân). Nó sẽ trả về true nếu kết quả không bằng 0 (tức là 0000 0000). Mục đích của bộ lọc này là để hiển thị các gói tin được gửi đến địa chỉ multicast. Địa chỉ Ethernet multicast là một địa chỉ cụ thể xác định một nhóm thiết bị dự định nhận cùng một dữ liệu.
@@ -200,11 +200,11 @@ tcp-push TCP Push
 ```
 
 Dựa trên những điều đã nêu ở trên, ta có thể viết:
-
+```
 `tcpdump "tcp[tcpflags] == tcp-syn"` để bắt giữ TCP các gói tin chỉ có cờ SYN (Đồng bộ hóa) được đặt, trong khi tất cả các cờ khác đều không được đặt.
 `tcpdump "tcp[tcpflags] & tcp-syn != 0"` để bắt giữ TCP các gói tin có ít nhất cờ SYN (Đồng bộ hóa) được thiết lập.
 `tcpdump "tcp[tcpflags] & (tcp-syn|tcp-ack) != 0"` để bắt giữ TCP các gói tin có ít nhất cờ SYN (Đồng bộ hóa) hoặc ACK (Xác nhận) được thiết lập.
-
+```
 Tcpdump là một chương trình mạnh mẽ với nhiều tùy chọn để tùy chỉnh cách in và hiển thị các gói tin. Chúng tôi đã chọn đề cập đến năm tùy chọn sau:
 ```
 `-q`: Xuất nhanh; in thông tin gói tin ngắn gọn
