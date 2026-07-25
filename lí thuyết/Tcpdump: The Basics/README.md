@@ -51,7 +51,7 @@ Tạo ra đầu ra chi tiết hơn
 Nếu bạn muốn in thêm chi tiết về các gói tin, bạn có thể sử dụng `-v` để tạo ra đầu ra chi tiết hơn một chút. Theo trang hướng dẫn sử dụng Tcpdump (`man tcpdump`), việc thêm `-v` sẽ in ra "thời gian tồn tại, định danh, tổng chiều dài và các tùy chọn trong một gói IP" cùng với các kiểm tra khác. sẽ `-vv` tạo ra đầu ra chi tiết hơn; `-vvv` sẽ cung cấp nhiều chi tiết hơn nữa; hãy kiểm tra trang hướng dẫn để biết chi tiết.
 
 Tóm tắt và ví dụ:
-
+```
 tcpdump -i INTERFACE	Thu thập các gói dữ liệu trên một giao diện mạng cụ thể.
 tcpdump -w FILE	Ghi các gói dữ liệu đã bắt được vào một tệp.
 tcpdump -r FILE	Đọc các gói dữ liệu đã được thu thập từ một tệp.
@@ -59,7 +59,7 @@ tcpdump -c COUNT	Thu thập một số lượng gói tin cụ thể
 tcpdump -n	Không phân giải địa chỉ IP
 tcpdump -nn	Không phân giải địa chỉ IP và không phân giải số giao thức.
 tcpdump -v	Hiển thị chi tiết; mức độ chi tiết có thể được tăng lên bằng cách sử dụng `-vv` và `-vvv`
-
+```
 Hãy xem xét các ví dụ sau:
 
 `tcpdump -i eth0 -c 50 -v` Chương trình thu thập và hiển thị 50 gói dữ liệu bằng cách lắng nghe trên `eth0` giao diện, là giao diện Ethernet có dây, và hiển thị chúng một cách chi tiết.
@@ -135,11 +135,11 @@ listening on eth0, link-type EN10MB (Ethernet), snapshot length 262144 bytes
 Toán tử logic
 
 Ba toán tử logic có thể hữu ích:
-
+```
 `and`: Bắt giữ các gói tin khi cả hai điều kiện đều đúng. Ví dụ, `tcpdump host 1.1.1.1 and tcp` bắt giữ `tcp` lưu lượng truy cập có `host 1.1.1.1`.
 `or`: Bắt giữ các gói tin khi một trong hai điều kiện sau đúng. Ví dụ: `tcpdump udp or icmp` bắt giữ UDP hoặc lưu lượng ICMP.
 `not`: Bắt giữ các gói tin khi điều kiện không đúng. Ví dụ: `tcpdump not tcp` bắt giữ tất cả các gói tin ngoại trừ TCP phân đoạn; chúng tôi dự kiến ​​sẽ tìm thấy các gói UDP, ICMP và ARP trong số các kết quả.
-
+```
 Tóm tắt và ví dụ
 
 `tcpdump host IP` hoặc `tcpdump host HOSTNAME` :Lọc các gói tin theo địa chỉ IP hoặc tên máy chủ.
@@ -206,12 +206,12 @@ Dựa trên những điều đã nêu ở trên, ta có thể viết:
 `tcpdump "tcp[tcpflags] & (tcp-syn|tcp-ack) != 0"` để bắt giữ TCP các gói tin có ít nhất cờ SYN (Đồng bộ hóa) hoặc ACK (Xác nhận) được thiết lập.
 
 Tcpdump là một chương trình mạnh mẽ với nhiều tùy chọn để tùy chỉnh cách in và hiển thị các gói tin. Chúng tôi đã chọn đề cập đến năm tùy chọn sau:
-
+```
 `-q`: Xuất nhanh; in thông tin gói tin ngắn gọn
 `-e`: In tiêu đề cấp liên kết
 `-A`: Hiển thị dữ liệu gói tin dưới dạng ASCII
 `-xx`:Hiển thị dữ liệu gói tin ở định dạng thập lục phân, được gọi là hex.
 `-X`: Hiển thị tiêu đề và dữ liệu gói tin ở dạng thập lục phân và ASCII.
-
+```
 Để minh họa cách các tùy chọn trên tác động đến đầu ra, trước tiên chúng ta sẽ hiển thị hai gói tin đã được thu thập mà không sử dụng bất kỳ đối số bổ sung nào.
 
