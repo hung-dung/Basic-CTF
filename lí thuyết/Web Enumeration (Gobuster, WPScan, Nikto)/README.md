@@ -12,8 +12,106 @@ Chính sách mật khẩu yếu (tấn công vét cạn mật khẩu)
 Sự hiện diện của cài đặt mặc định (Đang tìm kiếm các tệp mặc định)
 Kiểm tra tường lửa ứng dụng web (các plugin WAF phổ biến) 
 ```
+Cài đặt WPScan
 
+Rất may là WPScan đã được cài đặt sẵn trên các phiên bản mới nhất của các hệ thống kiểm thử xâm nhập như Kali Linux và Parrot. Nếu bạn đang sử dụng phiên bản Kali cũ hơn.Linux(chẳng hạn như năm 2019) ví dụ, WPScan nằm trong apt kho lưu trữ, vì vậy có thể được cài đặt bằng một lệnh đơn giản.`sudo apt update` && `sudo apt install wpscan`
 
+<img width="1869" height="339" alt="image" src="https://github.com/user-attachments/assets/c747b5a5-c5bd-4c19-b240-4bce5d617d51" />
+
+﻿Việc cài đặt WPScan trên các hệ điều hành khác như Ubuntu hoặc Debian đòi hỏi thêm một số bước. Mặc dù TryHackMe AttackBox đã được cài đặt sẵn WPScan, bạn vẫn có thể làm theo hướng dẫn cài đặt của nhà phát triển.(`https://github.com/wpscanteam/wpscan#install`)phù hợp với môi trường địa phương của bạn.
+
+Giới thiệu cơ bản về cơ sở dữ liệu của WPScan
+
+WPScan sử dụng thông tin trong cơ sở dữ liệu cục bộ làm điểm tham chiếu chính khi liệt kê các giao diện và plugin. Như chúng ta sẽ đi vào chi tiết sau, một kỹ thuật mà WPScan sử dụng khi liệt kê là tìm kiếm các giao diện và plugin phổ biến. Trước khi sử dụng WPScan, bạn nên cập nhật cơ sở dữ liệu này trước khi thực hiện bất kỳ lần quét nào.
+
+Rất may, đây là một quy trình dễ thực hiện. Chỉ cần chạy `wpscan --update`
+
+<img width="753" height="441" alt="image" src="https://github.com/user-attachments/assets/5330f41c-f928-4054-a4cf-8cc97a0e9f08" />
+
+Liệt kê các chủ đề đã cài đặt
+
+WPScan có một vài phương pháp để xác định giao diện đang hoạt động trên một cài đặt WordPress đang chạy. Về cơ bản, nó quy về một kỹ thuật mà chúng ta có thể tự thực hiện. Đơn giản là, chúng ta có thể xem các tài nguyên mà trình duyệt web tải lên và sau đó tìm vị trí của chúng trên máy chủ web. Sử dụng tab "Mạng" trong công cụ dành cho nhà phát triển của trình duyệt web, bạn có thể xem những tệp nào được tải khi bạn truy cập một trang web.
+
+Hãy xem ảnh chụp màn hình bên dưới, chúng ta có thể thấy nhiều tài nguyên đã được tải, một số trong số đó là các tập lệnh và kiểu dáng của giao diện quyết định cách trình duyệt hiển thị trang web. URL được đánh dấu trong ảnh chụp màn hình bên dưới là: `http://redacted/wp-content/themes/twentytwentyone/assets/`
+
+<img width="756" height="830" alt="image" src="https://github.com/user-attachments/assets/5e91450e-1cb2-46b5-9310-22fcedc6cc1d" />
+
+Chúng ta có thể đoán khá chính xác rằng tên của giao diện hiện tại là "twentytwentyone". Sau khi kiểm tra mã nguồn của trang web, chúng ta có thể nhận thấy thêm các tham chiếu đến "twentytwentyone".
+
+<img width="713" height="206" alt="image" src="https://github.com/user-attachments/assets/4b82990c-3bd2-43f2-b6b7-08716ea278ff" />
+
+Tuy nhiên, chúng ta hãy sử dụng WPScan để tăng tốc quá trình này bằng cách sử dụng `--enumerate` cờ với tđối số như sau:
+
+`wpscan --url http://cmnatics.playground/ --enumerate t `
+
+Sau vài phút, chúng ta bắt đầu thấy một số kết quả:
+
+<img width="1016" height="403" alt="image" src="https://github.com/user-attachments/assets/77b6b1d4-fe47-4901-a0e3-276349fea4cd" />
+
+Ưu điểm tuyệt vời của WPScan là công cụ này cho bạn biết cách nó xác định kết quả. Trong trường hợp này, chúng ta được thông báo rằng giao diện "twentytwenty" đã được xác nhận bằng cách quét " Vị trí đã biết ". Giao diện "twentytwenty" là giao diện mặc định của WordPress cho các phiên bản WordPress năm 2020.
+
+Liệt kê các plugin đã cài đặt
+
+Một tính năng rất phổ biến của máy chủ web là "Liệt kê thư mục" và thường được bật mặc định. Nói một cách đơn giản, "Liệt kê thư mục" là việc liệt kê các tệp trong thư mục mà chúng ta đang điều hướng đến (giống như khi chúng ta sử dụng Windows Explorer hoặc `ls` lệnh của Linux). URL trong ngữ cảnh này rất giống với đường dẫn tệp. URL http://cmnatics.playground/a/directory. Đây thực chất là thư mục gốc đã được cấu hình của máy chủ `web/a/directory`:
+
+<img width="692" height="57" alt="image" src="https://github.com/user-attachments/assets/ffe5a60b-d2b1-4a39-8362-bbce1597bbf2" />
+
+"Directory Listing" xảy ra khi không có tệp nào được chỉ định để máy chủ web xử lý. Một số tệp rất phổ biến là "index.html" và "index.php". Vì các tệp này không có trong thư mục /a/, nên nội dung của chúng sẽ được hiển thị thay thế:
+
+<img width="439" height="298" alt="image" src="https://github.com/user-attachments/assets/8e8cad01-354b-4f8c-96d5-a0395beec70c" />
+
+WPScan có thể tận dụng tính năng này như một kỹ thuật để tìm kiếm các plugin đã được cài đặt. Vì tất cả chúng đều nằm trong thư mục /wp-content/plugins/pluginname, WPScan có thể liệt kê các plugin phổ biến/đã biết.
+
+Trong ảnh chụp màn hình bên dưới, "easy-table-of-contents" đã được phát hiện. Tuyệt vời! Điều này có thể là một lỗ hổng bảo mật. Để xác định điều đó, chúng ta cần biết số phiên bản. May mắn thay, WordPress đã cung cấp thông tin này cho chúng ta một cách dễ dàng.
+
+ <img width="884" height="310" alt="image" src="https://github.com/user-attachments/assets/5c68f78f-454e-4f58-9b37-f367e9556c41" />
+
+Khi đọc tài liệu dành cho nhà phát triển của WordPress, chúng ta có thể tìm hiểu về " Tệp Readme của Plugin".(`https://developer.wordpress.org/plugins/wordpress-org/how-your-readme-txt-works/#how-the-readme-is-parsed`) "Để tìm hiểu cách WPScan xác định số phiên bản. Nói một cách đơn giản, các plugin phải có tệp "README.txt". Tệp này chứa thông tin meta như tên plugin, các phiên bản WordPress mà nó tương thích và mô tả."
+
+<img width="964" height="381" alt="image" src="https://github.com/user-attachments/assets/34e94135-2dad-4d84-9ff5-e49ac9e46961" />
+
+WPScan sử dụng các phương pháp bổ sung để phát hiện plugin (chẳng hạn như tìm kiếm các tham chiếu hoặc nhúng trên các trang chứa tài nguyên plugin). Chúng ta có thể sử dụng cờ với đối số như sau: --enumerate p 
+
+`wpscan --url http://cmnatics.playground/ --enumerate p `
+
+Chúng tôi đã chỉ ra rằng WPScan có khả năng thực hiện các cuộc tấn công vét cạn mật khẩu. Mặc dù chúng ta phải cung cấp danh sách mật khẩu như rockyou.txt , nhưng cách WPScan liệt kê người dùng lại khá đơn giản. Các trang web WordPress sử dụng tác giả cho các bài đăng. Trên thực tế, tác giả là một loại người dùng.
+
+<img width="1138" height="705" alt="image" src="https://github.com/user-attachments/assets/0f113f17-5818-4834-9572-8c04771ccfa2" />
+
+Và quả nhiên, tác giả này đã được WPScan của chúng tôi lựa chọn:
+
+<img width="912" height="136" alt="image" src="https://github.com/user-attachments/assets/1620dd08-4963-4aa0-a2c3-7f2ce69c0f8e" />
+
+Cờ "Dễ bị tổn thương"
+
+Trong các lệnh đã thực hiện cho đến nay, chúng ta mới chỉ liệt kê WordPress để tìm ra các giao diện, plugin và người dùng hiện có. Hiện tại, chúng ta cần xem xét kết quả đầu ra và sử dụng các trang web như MITRE, NVD và CVEDetails để tra cứu tên các plugin này và số phiên bản nhằm xác định bất kỳ lỗ hổng nào.
+
+WPScan có `v` đối số cho `--enumerate` cờ. Chúng tôi cung cấp đối số này cùng với một đối số khác (chẳng hạn như `p` dành cho plugin). Ví dụ, cú pháp của chúng tôi sẽ như sau: `wpscan --url http://cmnatics.playground/ --enumerate vp` 
+
+Lưu ý rằng điều này yêu cầu thiết lập WPScan để sử dụng API WPVulnDB, điều này nằm ngoài phạm vi của cuộc thảo luận này. 
+
+<img width="1025" height="81" alt="image" src="https://github.com/user-attachments/assets/afd119b7-f2ae-4ac2-b4fe-96089e67c81d" />
+
+Thực hiện tấn công mật khẩu
+
+Sau khi xác định được danh sách các tên người dùng khả thi trên hệ thống WordPress, chúng ta có thể sử dụng WPScan để thực hiện kỹ thuật tấn công vét cạn (brute-forcing) đối với tên người dùng đã chỉ định và danh sách mật khẩu được cung cấp. Nói một cách đơn giản, chúng ta sử dụng kết quả của việc liệt kê tên người dùng để xây dựng một lệnh như sau: `wpscan –-url http://cmnatics.playground –-passwords rockyou.txt –-usernames cmnatic`
+
+https://assets.tryhackme.com/additional/web-enumeration-redux/password-attack.png
+
+Điều chỉnh mức độ mạnh mẽ của WPScan (WAF)
+
+Trừ khi có chỉ định khác, WPScan sẽ cố gắng tạo ra ít "tiếng ồn" nhất có thể. Quá nhiều yêu cầu đến máy chủ web có thể kích hoạt các hệ thống như tường lửa và cuối cùng dẫn đến việc bạn bị máy chủ chặn.
+
+Điều này có nghĩa là một số plugin và theme có thể bị WPScan bỏ sót. May mắn thay, chúng ta có thể sử dụng các tham số như  `--plugins-detection` và cấu hình mức độ mạnh mẽ (thụ động/mạnh mẽ) để chỉ định điều này. Ví dụ: `--plugins-detection aggressive`
+
+Tóm tắt - Bản tóm lược
+```
+P ->	Liệt kê các plugin	-> --enumeration p
+t	-> Liệt kê các chủ đề	-> --enumeration t
+u ->	Liệt kê tên người dùng	--enumerate -u
+v	-> Sử dụng WPVulnDB để đối chiếu các lỗ hổng bảo mật. Ví dụ lệnh tìm kiếm các plugin dễ bị tổn thương (p)	-> --enumeration vp
+aggressive ->	Đây là cấu hình độ mạnh mẽ mà WPScan sẽ sử dụng.	-> --plugins-detection aggressive
+```
 
 III. NIKTO:
 
