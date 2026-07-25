@@ -60,7 +60,7 @@ Chúng ta có thể tăng độ chi tiết của quá trình quét Nikto bằng 
 
 2	-> Hiển thị bất kỳ cookie nào đã nhận được ->	Các ứng dụng thường sử dụng cookie như một phương tiện lưu trữ dữ liệu. Ví dụ, máy chủ web sử dụng phiên, trong đó các trang thương mại điện tử có thể lưu trữ các sản phẩm trong giỏ hàng của bạn dưới dạng cookie. Thông tin đăng nhập cũng có thể được lưu trữ trong cookie.
 
-E ->Xuất ra bất kỳ lỗi nào -> Điều này sẽ hữu ích cho việc gỡ lỗi nếu quá trình quét không trả về kết quả như bạn mong đợi!
+E -> Xuất ra bất kỳ lỗi nào -> Điều này sẽ hữu ích cho việc gỡ lỗi nếu quá trình quét không trả về kết quả như bạn mong đợi!
 ```
 
 Tinh chỉnh quá trình quét để tìm kiếm lỗ hổng bảo mật
