@@ -150,7 +150,7 @@ Sau do dung `john --wordlist=/usr/share/wordlists/rockyou.txt kdbx.hash `
 
 Tim dc mat khau file `infrastructure.kdbx` la `spring` <br>
 
-Dung `KeePassXC de tim password cho root
+Dung `KeePassXC` de tim password cho root
 
 <img width="802" height="437" alt="image" src="https://github.com/user-attachments/assets/eb3fa3d2-d67f-4599-aeee-442e5d661da7" />
 
