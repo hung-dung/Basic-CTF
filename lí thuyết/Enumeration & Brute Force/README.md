@@ -318,5 +318,75 @@ Nếu bạn đang sử dụng, cuộc tấn công sẽ mất một thời gian �
 
 <img width="2988" height="466" alt="image" src="https://github.com/user-attachments/assets/667f3705-5746-42e2-b7f9-555902abdae3" />
 
+Xác thực cơ bản trong năm 2024?
+Xác thực cơ bản cung cấp một phương pháp đơn giản hơn để bảo mật quyền truy cập vào thiết bị. Nó chỉ yêu cầu tên người dùng và mật khẩu, giúp dễ dàng triển khai và quản lý trên các thiết bị có khả năng xử lý hạn chế.  Các thiết bị mạng như bộ định tuyến thường sử dụng xác thực cơ bản để kiểm soát quyền truy cập vào giao diện quản trị của chúng. Trong trường hợp này, mục tiêu chính là ngăn chặn truy cập trái phép với thiết lập tối thiểu.
 
+Mặc dù xác thực cơ bản không cung cấp các tính năng bảo mật mạnh mẽ như các phương thức phức tạp hơn như OAuth hoặc xác thực dựa trên mã thông báo, nhưng sự đơn giản của nó làm cho nó phù hợp với các môi trường không yêu cầu quản lý phiên và theo dõi người dùng hoặc việc quản lý được thực hiện theo cách khác. Ví dụ, trong các thiết bị như bộ định tuyến chủ yếu được truy cập để thay đổi cấu hình hơn là sử dụng thường xuyên, việc duy trì trạng thái phiên là không cần thiết và có thể làm phức tạp hiệu suất của thiết bị.
 
+HTTPXác thực cơ bản được định nghĩa trongRFC7617(mở trong tab mới)Điều khoản này quy định rằng thông tin đăng nhập (tên người dùng và mật khẩu) phải được truyền tải dưới dạng chuỗi mã hóa base64 trong...HTTPTiêu đề xác thực. Phương pháp này đơn giản nhưng không an toàn trên các kết nối không phải HTTPS, vì base64 không phải là phương pháp mã hóa và có thể dễ dàng giải mã. Mối đe dọa thực sự thường đến từ thông tin đăng nhập yếu có thể bị tấn công bằng phương pháp vét cạn.
+
+HTTPXác thực cơ bản cung cấp một cơ chế thách thức-phản hồi đơn giản để yêu cầu thông tin đăng nhập của người dùng.
+
+<img width="1334" height="1412" alt="image" src="https://github.com/user-attachments/assets/d639a3f7-f782-4868-a59d-71bfbe7bad37" />
+
+Định dạng tiêu đề Ủy quyền như sau:
+
+`Authorization: Basic <credentials>`
+
+`<credentials>` Mã hóa base64 của nằm ở đâu username:password? Để biết thông số kỹ thuật chi tiết, vui lòng tham khảo RFC 7617.(mở trong tab mới).
+
+Sự bóc lột
+
+Để chứng minh điều này, hãy truy cập  http://enum.thm/labs/basic_auth/(mở trong tab mới).
+
+<img width="3014" height="894" alt="image" src="https://github.com/user-attachments/assets/46984d9e-4ea7-4567-b321-fdbed47ec4f3" />
+
+Nhập bất kỳ tên người dùng và mật khẩu nào vào cửa sổ bật lên và thu thập yêu cầu xác thực cơ bản bằng Burp.
+
+<img width="2980" height="846" alt="image" src="https://github.com/user-attachments/assets/b3e79a2e-9240-47c9-b54d-47ee35f3d0e4" />
+
+<img width="2910" height="840" alt="image" src="https://github.com/user-attachments/assets/9a5c873c-789e-4778-a8bc-767030a55e4b" />
+
+Nhấp chuột phải vào yêu cầu và gửi nó đến Intruder.
+
+<img width="2926" height="998" alt="image" src="https://github.com/user-attachments/assets/cf5935f1-518b-4112-b32b-329170322aaa" />
+
+Trong Burp Intruder, hãy vào tab "Positions" và giải mã chuỗi được mã hóa base64 trong tiêu đề Authorization.
+
+<img width="2992" height="1496" alt="image" src="https://github.com/user-attachments/assets/d019ddfe-70b4-4cfb-85ce-5e0b717f9e99" />
+
+Sau khi giải mã, hãy chọn chuỗi đã giải mã và nhấp vào nút Thêm ở góc trên bên phải.
+
+<img width="3000" height="986" alt="image" src="https://github.com/user-attachments/assets/359e6e8d-aed8-4640-a266-e5fb6b7047df" />
+
+Bước tiếp theo là cấu hình payload. Vào tab Payloads và đặt loại payload thành Simple list, sau đó chọn danh sách từ bạn muốn sử dụng. Trong ví dụ này, chúng ta sẽ sử dụng 500-worst-passwords.txt(mở trong tab mới)Từ SecLists. Nếu bạn đang sử dụng AttackBox, bạn có thể sử dụng cùng danh sách từ nằm tại  `/usr/share/wordlists/SecLists/Passwords/Common-Credentials/500-worst-passwords.txt`
+
+<img width="2978" height="1392" alt="image" src="https://github.com/user-attachments/assets/2a12f7b2-f5ec-4b1f-ad49-25ac9fc43c4a" />
+
+Vì phần tiêu đề được mã hóa base64, chúng ta cần thêm hai quy tắc trong phần xử lý Payload. Quy tắc đầu tiên tự động thêm tên người dùng vào mật khẩu, vì vậy thay vì 123456, payload sẽ là "admin:123456".
+
+<img width="2990" height="1432" alt="image" src="https://github.com/user-attachments/assets/8e178bf5-17ea-4127-9001-42b65c59e85e" />
+
+Quy tắc thứ hai sẽ mã hóa base64 tên người dùng và mật khẩu kết hợp từ danh sách được cung cấp.
+
+<img width="2992" height="1414" alt="image" src="https://github.com/user-attachments/assets/bce06391-d3ce-4441-9559-7768c75c79eb" />
+
+Chúng ta cũng nên loại bỏ ký tự "=" (dấu bằng) khỏi mã hóa vì base64 sử dụng "=" để đệm. Để làm điều này, hãy cuộn xuống và xóa dấu "=" khỏi danh sách các ký tự trong phần mã hóa Payload.
+
+<img width="3016" height="1594" alt="image" src="https://github.com/user-attachments/assets/e378a878-ee8e-4f39-93ca-8edb939cb671" />
+
+Sau khi hoàn tất, hãy quay lại tab Vị trí và nhấp vào nút Bắt đầu tấn công. Cuộc tấn công sẽ mất chưa đến 2 phút.
+
+<img width="2682" height="1224" alt="image" src="https://github.com/user-attachments/assets/f15f6c3e-b77d-4ed3-8f56-151490edde00" />
+
+Khi nhận được mã trạng thái 200, điều đó có nghĩa là tấn công vét cạn thành công và một trong những mật khẩu trong danh sách được cung cấp đang hoạt động. Giải mã chuỗi base64 được mã hóa trong yêu cầu thành công.
+
+<img width="2682" height="982" alt="image" src="https://github.com/user-attachments/assets/ec0a1f8f-801c-46ef-ac3c-735546dfb8d6" />
+
+<img width="1010" height="400" alt="image" src="https://github.com/user-attachments/assets/1fca83c8-d2d2-451e-8498-0a78b912bf65" />
+
+Sử dụng chuỗi base64 đã giải mã để đăng nhập vào ứng dụng.
+
+<img width="2266" height="724" alt="image" src="https://github.com/user-attachments/assets/7b7ca10d-a514-4fee-b125-a90771263fbe" />
+
+<img width="1114" height="306" alt="image" src="https://github.com/user-attachments/assets/0e8d1e3c-f570-46f3-838b-c588aeddb3cf" />
