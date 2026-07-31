@@ -226,4 +226,97 @@ for email in valid_emails:
 ```
 Sau khi tải xuống danh sách payload, hãy sử dụng tập lệnh trên AttackBox hoặc máy tính của bạn để kiểm tra các địa chỉ email hợp lệ.
 
+Các lỗ hổng trong quy trình đặt lại mật khẩu
+
+Cơ chế đặt lại mật khẩu là một phần quan trọng mang lại sự tiện lợi cho người dùng trong các ứng dụng web hiện đại. Tuy nhiên, việc triển khai chúng đòi hỏi phải xem xét cẩn thận về vấn đề bảo mật vì các quy trình đặt lại mật khẩu kém bảo mật có thể dễ dàng bị khai thác.
+
+Đặt lại dựa trên email
+
+Khi người dùng đặt lại mật khẩu, ứng dụng sẽ gửi một email chứa liên kết đặt lại mật khẩu hoặc mã xác thực đến địa chỉ email đã đăng ký của người dùng. Sau đó, người dùng nhấp vào liên kết này, dẫn họ đến một trang nơi họ có thể nhập mật khẩu mới và xác nhận, hoặc hệ thống sẽ tự động tạo mật khẩu mới cho người dùng. Phương pháp này phụ thuộc rất nhiều vào tính bảo mật của tài khoản email người dùng và tính bí mật của liên kết hoặc mã xác thực được gửi đi.
+
+Đặt lại dựa trên câu hỏi bảo mật
+
+Quá trình này bao gồm việc người dùng trả lời một loạt câu hỏi bảo mật được cấu hình sẵn mà họ đã thiết lập khi tạo tài khoản. Nếu câu trả lời chính xác, hệ thống cho phép người dùng tiếp tục đặt lại mật khẩu. Mặc dù phương pháp này bổ sung thêm một lớp bảo mật bằng cách yêu cầu thông tin mà chỉ người dùng mới biết, nhưng nó có thể bị xâm phạm nếu kẻ tấn công có được quyền truy cập vào thông tin nhận dạng cá nhân.PII), điều này đôi khi có thể dễ dàng tìm thấy hoặc đoán được.
+
+Đặt lại bằng tin nhắn SMS
+
+Phương pháp này hoạt động tương tự như việc đặt lại mật khẩu qua email nhưng sử dụng tin nhắn SMS để gửi mã hoặc liên kết đặt lại mật khẩu trực tiếp đến điện thoại di động của người dùng. Sau khi nhận được mã, người dùng có thể nhập mã đó trên trang web được cung cấp để truy cập chức năng đặt lại mật khẩu. Phương pháp này giả định rằng việc truy cập vào điện thoại của người dùng là an toàn, nhưng nó có thể dễ bị tấn công bằng cách đánh cắp SIM hoặc chặn bắt thông tin.
+
+Mỗi phương pháp này đều có những điểm yếu riêng:
+
+Mã thông báo dễ đoán : Nếu mã thông báo đặt lại được sử dụng trong các liên kết hoặc tin nhắn SMS dễ đoán hoặc tuân theo một trình tự nhất định, kẻ tấn công có thể đoán hoặc tấn công vét cạn để tạo ra các URL đặt lại hợp lệ.
+
+Vấn đề hết hạn token : Các token có hiệu lực quá lâu hoặc không hết hạn ngay sau khi sử dụng sẽ tạo ra cơ hội cho kẻ tấn công. Điều quan trọng là các token phải hết hạn nhanh chóng để hạn chế cơ hội này.
+
+Xác thực không đầy đủ : Các cơ chế xác minh danh tính người dùng, như câu hỏi bảo mật hoặc xác thực qua email, có thể yếu và dễ bị khai thác nếu các câu hỏi quá phổ biến hoặc tài khoản email bị xâm phạm.
+
+Tiết lộ thông tin : Bất kỳ thông báo lỗi nào cho biết địa chỉ email hoặc tên người dùng đã được đăng ký hay chưa đều có thể vô tình giúp kẻ tấn công trong quá trình thu thập thông tin, xác nhận sự tồn tại của các tài khoản.
+
+Truyền tải không an toàn : Việc truyền các liên kết đặt lại hoặc mã thông báo qua các kết nối không phải HTTPS có thể khiến các yếu tố quan trọng này dễ bị kẻ nghe lén mạng chặn bắt.
+
+Khai thác các mã thông báo có thể dự đoán được
+
+Các token đơn giản, dễ đoán hoặc có thời gian hết hạn dài có thể đặc biệt dễ bị tấn công chặn hoặc tấn công vét cạn. Ví dụ, đoạn mã dưới đây được sử dụng bởi ứng dụng dễ bị tổn thương được lưu trữ trong phòng thí nghiệm Token dễ đoán:
+
+```
+$token = mt_rand(100, 200);
+$query = $conn->prepare("UPDATE users SET reset_token = ? WHERE email = ?");
+$query->bind_param("ss", $token, $email);
+$query->execute();
+```
+
+Đoạn mã trên thiết lập một mã PIN ba chữ số ngẫu nhiên làm mã đặt lại cho email đã gửi. Vì mã này không sử dụng các ký tự hỗn hợp, nên nó có thể dễ dàng bị tấn công bằng phương pháp vét cạn.
+
+Để chứng minh điều này, hãy truy cập  http://enum.thm/labs/predictable_tokens/(mở trong tab mới).
+
+<img width="1980" height="838" alt="image" src="https://github.com/user-attachments/assets/3d609d9f-904f-4d3f-a61d-650b905c21be" />
+
+Truy cập trang đặt lại mật khẩu của ứng dụng, nhập "admin@admin.com" vào trường Email  và nhấn Gửi.
+
+<img width="1934" height="768" alt="image" src="https://github.com/user-attachments/assets/73544285-79f1-4e04-974e-79e1532d5310" />
+
+Ứng dụng sẽ trả về thông báo thành công.
+
+<img width="1880" height="848" alt="image" src="https://github.com/user-attachments/assets/1a93d79e-89d9-40d3-a4a5-dc76a4eeea87" />
+
+Để minh họa, ứng dụng web sử dụng liên kết đặt lại:`http://enum.thm/labs/predictable_tokens/reset_password.php?token=123`
+
+<img width="2998" height="846" alt="image" src="https://github.com/user-attachments/assets/aba480cc-0a87-4714-aac2-4b75a7da650f" />
+
+Lưu ý rằng mã thông báo là một giá trị số đơn giản.  Sử dụng Burp Suite, điều hướng đến URL ở trên và bắt lấy yêu cầu.
+
+Tiếp theo, gửi yêu cầu đến Intruder, chọn giá trị của tham số token và nhấp vào nút Thêm payload, như hình bên dưới.
+
+<img width="2988" height="866" alt="image" src="https://github.com/user-attachments/assets/d512f851-6ced-4bd9-92fe-75535de345ce" />
+
+Sử dụng AttackBox hoặc máy ảo tấn công của riêng bạn, hãy dùng Crunch để tạo ra một danh sách các số từ 100 đến 200. Danh sách này sẽ được sử dụng làm từ điển trong cuộc tấn công vét cạn.
+
+```
+user@tryhackme $ crunch 3 3 -o otp.txt -t %%% -s 100 -e 200             
+
+Crunch will now generate the following amount of data: 404 bytes
+0 MB
+0 GB
+0 TB
+0 PB
+Crunch will now generate the following number of lines: 101
+
+crunch: 100% completed generating output
+```
+
+Quay lại Intruder và cấu hình payload để sử dụng tệp đã tạo
+
+<img width="2986" height="1380" alt="image" src="https://github.com/user-attachments/assets/23b566a1-dfe7-4e6e-bd98-6e5c26245430" />
+
+<img width="2720" height="824" alt="image" src="https://github.com/user-attachments/assets/0ad6118b-9ab6-495d-bff6-a590916585c0" />
+
+Nếu bạn đang sử dụng, cuộc tấn công sẽ mất một thời gian để hoàn tất.Burp Suite Phiên bản Cộng đồng. Tuy nhiên, sau khi đăng ký thành công, bạn sẽ nhận được phản hồi có độ dài nội dung lớn hơn nhiều so với các phản hồi có thông báo lỗi "Mã thông báo không hợp lệ".
+
+<img width="2144" height="1330" alt="image" src="https://github.com/user-attachments/assets/bb2fe5b4-9b09-4a98-9b7e-bc1cde021143" />
+
+Đăng nhập vào ứng dụng bằng mật khẩu mới.
+
+<img width="2988" height="466" alt="image" src="https://github.com/user-attachments/assets/667f3705-5746-42e2-b7f9-555902abdae3" />
+
+
 
