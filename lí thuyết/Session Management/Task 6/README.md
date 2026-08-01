@@ -6,7 +6,7 @@ Liệt kê
 
 Điều đầu tiên chúng ta nhận thấy là khi truy cập trang lần đầu, chúng ta không thấy bất kỳ cookie hay mã thông báo nào. Điều này cho thấy rằng các phiên truy cập không được xác thực rất có thể không được theo dõi. Nếu nhấp vào nút Đăng ký, chúng ta sẽ thấy có hai hình thức đăng ký chính:
 
-Sinh viên - Bất kỳ ai cũng có thể sử dụng tính năng này để tạo hồ sơ.
+Sinh viên - Bất kỳ ai cũng có thể sử dụng tính năng này để tạo hồ sơ. <br>
 Giảng viên - Cần mã xác minh để hoàn tất quá trình đăng ký.
 
 Điều này cho thấy rằng ngay cả khi không sử dụng bất kỳ kỹ thuật tấn công vét cạn nào, chúng ta vẫn có thể khởi động vòng đời quản lý phiên bằng cách tạo tài khoản học sinh. Hãy tạo một tài khoản học sinh và xem điều gì sẽ xảy ra:
