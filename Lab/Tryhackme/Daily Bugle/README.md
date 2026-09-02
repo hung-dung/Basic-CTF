@@ -588,6 +588,105 @@ dr-xr-xr-x. 17 root   root      244 Dec 14  2019 ..
 sh-4.2$ chmod +x linpeas.sh
 chmod +x linpeas.sh
 ```
+
+```
+sh-4.2$ cd /var/www/html     
+cd /var/www/html
+sh-4.2$ ls -al
+ls -al
+total 64
+drwxr-xr-x. 17 apache apache  4096 Dec 14  2019 .
+drwxr-xr-x.  4 root   root      33 Dec 14  2019 ..
+-rwxr-xr-x.  1 apache apache 18092 Apr 25  2017 LICENSE.txt
+-rwxr-xr-x.  1 apache apache  4494 Apr 25  2017 README.txt
+drwxr-xr-x. 11 apache apache   159 Apr 25  2017 administrator
+drwxr-xr-x.  2 apache apache    44 Apr 25  2017 bin
+drwxr-xr-x.  2 apache apache    24 Apr 25  2017 cache
+drwxr-xr-x.  2 apache apache   119 Apr 25  2017 cli
+drwxr-xr-x. 19 apache apache  4096 Apr 25  2017 components
+-rw-r--r--   1 apache apache  1982 Dec 14  2019 configuration.php
+-rwxr-xr-x.  1 apache apache  3005 Apr 25  2017 htaccess.txt
+drwxr-xr-x.  5 apache apache   164 Dec 15  2019 images
+drwxr-xr-x.  2 apache apache    64 Apr 25  2017 includes
+-rwxr-xr-x.  1 apache apache  1420 Apr 25  2017 index.php
+drwxr-xr-x.  4 apache apache    54 Apr 25  2017 language
+drwxr-xr-x.  5 apache apache    70 Apr 25  2017 layouts
+drwxr-xr-x. 11 apache apache   255 Apr 25  2017 libraries
+drwxr-xr-x. 26 apache apache  4096 Apr 25  2017 media
+drwxr-xr-x. 27 apache apache  4096 Apr 25  2017 modules
+drwxr-xr-x. 16 apache apache   250 Apr 25  2017 plugins
+-rwxr-xr-x.  1 apache apache   836 Apr 25  2017 robots.txt
+drwxr-xr-x.  5 apache apache    68 Dec 15  2019 templates
+drwxr-xr-x.  2 apache apache    24 Dec 15  2019 tmp
+-rwxr-xr-x.  1 apache apache  1690 Apr 25  2017 web.config.txt
+```
+```
+sh-4.2$ cat configuration.php
+cat configuration.php
+<?php
+class JConfig {
+        public $offline = '0';
+        public $offline_message = 'This site is down for maintenance.<br />Please check back again soon.';
+        public $display_offline_message = '1';
+        public $offline_image = '';
+        public $sitename = 'The Daily Bugle';
+        public $editor = 'tinymce';
+        public $captcha = '0';
+        public $list_limit = '20';
+        public $access = '1';
+        public $debug = '0';
+        public $debug_lang = '0';
+        public $dbtype = 'mysqli';
+        public $host = 'localhost';
+        public $user = 'root';
+        public $password = 'nv5uz9r3ZEDzVjNu';
+        public $db = 'joomla';
+        public $dbprefix = 'fb9j5_';
+        public $live_site = '';
+        public $secret = 'UAMBRWzHO3oFPmVC';
+        public $gzip = '0';
+        public $error_reporting = 'default';
+        public $helpurl = 'https://help.joomla.org/proxy/index.php?keyref=Help{major}{minor}:{keyref}';
+        public $ftp_host = '127.0.0.1';
+        public $ftp_port = '21';
+        public $ftp_user = '';
+        public $ftp_pass = '';
+        public $ftp_root = '';
+        public $ftp_enable = '0';
+        public $offset = 'UTC';
+        public $mailonline = '1';
+        public $mailer = 'mail';
+        public $mailfrom = 'jonah@tryhackme.com';
+        public $fromname = 'The Daily Bugle';
+        public $sendmail = '/usr/sbin/sendmail';
+        public $smtpauth = '0';
+        public $smtpuser = '';
+        public $smtppass = '';
+        public $smtphost = 'localhost';
+        public $smtpsecure = 'none';
+        public $smtpport = '25';
+        public $caching = '0';
+        public $cache_handler = 'file';
+        public $cachetime = '15';
+        public $cache_platformprefix = '0';
+        public $MetaDesc = 'New York City tabloid newspaper';
+        public $MetaKeys = '';
+        public $MetaTitle = '1';
+        public $MetaAuthor = '1';
+        public $MetaVersion = '0';
+        public $robots = '';
+        public $sef = '1';
+        public $sef_rewrite = '0';
+        public $sef_suffix = '0';
+        public $unicodeslugs = '0';
+        public $feed_limit = '10';
+        public $feed_email = 'none';
+        public $log_path = '/var/www/html/administrator/logs';
+        public $tmp_path = '/var/www/html/tmp';
+        public $lifetime = '15';
+        public $session_handler = 'database';
+        public $shared_session = '0';
+```
 ```
 sh-4.2$ ./linpeas.sh
 ./linpeas.sh
