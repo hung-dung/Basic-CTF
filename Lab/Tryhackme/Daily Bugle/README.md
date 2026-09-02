@@ -488,3 +488,10 @@ Session completed.
 
 <img width="945" height="726" alt="image" src="https://github.com/user-attachments/assets/dd7309f5-7f73-4a93-9eff-a3fa7706303c" />
 
+<img width="1050" height="452" alt="image" src="https://github.com/user-attachments/assets/7dd5c8e8-923e-4005-bc16-0ddf765717b6" />
+
+<img width="1050" height="256" alt="image" src="https://github.com/user-attachments/assets/a40d66f4-7278-4af5-99d2-c18620349342" />
+
+<img width="1050" height="695" alt="image" src="https://github.com/user-attachments/assets/94151146-91f6-43d6-b594-59261fe0aaff" />
+
+
