@@ -713,6 +713,7 @@ lrwxrwxrwx  1 jjameson jjameson   9 Dec 14  2019 .bash_history -> /dev/null
 [jjameson@dailybugle ~]$ cat user.txt
 27a260fe3cba712cfdedb1c86d80442e
 ```
+<img width="952" height="725" alt="image" src="https://github.com/user-attachments/assets/5b96e212-c665-4e1b-92e8-44ce0dd29fe8" />
 
 ```
 [jjameson@dailybugle /]$ TF=$(mktemp -d)
