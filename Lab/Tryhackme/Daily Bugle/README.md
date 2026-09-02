@@ -492,7 +492,7 @@ Session completed.
 
 <img width="1050" height="256" alt="image" src="https://github.com/user-attachments/assets/a40d66f4-7278-4af5-99d2-c18620349342" />
 
-<img width="1050" height="695" alt="image" src="https://github.com/user-attachments/assets/94151146-91f6-43d6-b594-59261fe0aaff" />
+<img width="1050" height="695" alt="Untitled" src="https://github.com/user-attachments/assets/c7c76bbf-ba09-40fa-93f5-45e1ef0ff4e5" />
 
 ```
 ┌──(kali㉿kali)-[~]
@@ -592,3 +592,5 @@ chmod +x linpeas.sh
 sh-4.2$ ./linpeas.sh
 ./linpeas.sh
 ```
+
+<img width="937" height="117" alt="image" src="https://github.com/user-attachments/assets/148ced0e-53da-4e91-8a1a-8ccf41b7334d" />
