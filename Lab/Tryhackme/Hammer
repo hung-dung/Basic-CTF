@@ -1,4 +1,0 @@
-Sử dụng Nmap với lệnh sau, tôi phát hiện ra rằng chỉ có hai cổng được mở:
-`nmap -Pn -sS -sV -Pn -p- 10.201.104.171`
-
-https://miro.medium.com/v2/resize:fit:750/format:webp/1*v6-QpQ69G8tT5Eu5StdVsg.png
