@@ -1,4 +1,5 @@
 Là gì XML?
+
 XML (Extensible Markup Language) là một ngôn ngữ đánh dấu được phát triển từ SGML (Standard Generalized Markup Language), cùng một tiêu chuẩn mà HTML dựa trên đó. XML thường được các ứng dụng sử dụng để lưu trữ và truyền tải dữ liệu ở định dạng vừa dễ đọc đối với con người vừa dễ phân tích đối với máy tính. Đây là một định dạng linh hoạt và được sử dụng rộng rãi để trao đổi dữ liệu giữa các hệ thống và ứng dụng khác nhau. XML bao gồm các phần tử, thuộc tính và dữ liệu ký tự, được sử dụng để biểu diễn dữ liệu một cách có cấu trúc và có tổ chức.
 
 Cú pháp và cấu trúc XML
