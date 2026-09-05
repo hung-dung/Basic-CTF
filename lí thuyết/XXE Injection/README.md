@@ -152,4 +152,65 @@ Cách sử dụng này đảm bảo rằng các ký tự đặc biệt được 
 Hình ảnh bên dưới minh họa các loại thực thể trong cấu trúc DOM:
 <img width="1000" height="800" alt="image" src="https://github.com/user-attachments/assets/99b01240-a2ea-480a-ada3-7ecaaab61190" />
 
+Tránh các cấu hình sai
+Các lỗi cấu hình trongXMLCài đặt trình phân tích cú pháp là một nguyên nhân phổ biến gây raXXE-các lỗ hổng liên quan. Điều chỉnh các cài đặt này có thể giảm đáng kể nguy cơ bị tấn công XXE. Dưới đây là hướng dẫn chi tiết và các phương pháp hay nhất cho một số ngôn ngữ lập trình và framework phổ biến.
 
+Các nguyên tắc thực hành tốt nhất chung
+1. Vô hiệu hóa các thực thể và DTD bên ngoài : Theo thông lệ tốt nhất, hãy vô hiệu hóa việc xử lý các thực thể và DTD bên ngoài trong trình phân tích cú pháp XML của bạn. Hầu hết các lỗ hổng XXE đều phát sinh từ các DTD độc hại.
+2. Sử dụng định dạng dữ liệu đơn giản hơn : Nếu có thể, hãy cân nhắc sử dụng các định dạng dữ liệu đơn giản hơn như...JSON, điều này không cho phép chỉ định các thực thể bên ngoài.
+3. Kiểm tra tính hợp lệ của dữ liệu đầu vào : Xác thực tất cả dữ liệu đến dựa trên một lược đồ nghiêm ngặt xác định các kiểu dữ liệu và mẫu dự kiến. Loại trừ hoặc mã hóa các ký tự đặc thù của XML như <, >, &, ', và ". Các ký tự này rất quan trọng trong cú pháp XML và có thể dẫn đến các cuộc tấn công chèn mã nếu sử dụng sai.
+   
+Các kỹ thuật giảm thiểu rủi ro trong ngôn ngữ phổ thông
+
+Java
+
+Sử dụng DocumentBuilderFactoryvà vô hiệu hóa DTD:
+
+```
+DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+dbf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+dbf.setFeature("http://xml.org/sax/features/external-general-entities", false);
+dbf.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+dbf.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+dbf.setXIncludeAware(false);
+dbf.setExpandEntityReferences(false);
+DocumentBuilder db = dbf.newDocumentBuilder();
+```
+
+.NET
+
+Cấu hình trình đọc XML để bỏ qua DTD và các thực thể bên ngoài:
+
+```
+XmlReaderSettings settings = new XmlReaderSettings();
+settings.DtdProcessing = DtdProcessing.Prohibit;
+settings.XmlResolver = null;
+XmlReader reader = XmlReader.Create(stream, settings);
+```
+
+PHP
+
+Vô hiệu hóa việc tải các thực thể bên ngoài bằng libxml:
+
+```
+libxml_disable_entity_loader(true);
+```
+
+Python
+
+Hãy sử dụng defusedxmlthư viện được thiết kế để giảm thiểu các lỗ hổng bảo mật XML:
+
+```
+from defusedxml.ElementTree import parse
+et = parse(xml_input)
+```
+
+Cập nhật và vá lỗi thường xuyên
+
+Cập nhật phần mềm : Luôn cập nhật tất cả các bộ xử lý và thư viện XML. Các nhà cung cấp thường xuyên vá các lỗ hổng bảo mật đã biết.
+Vá lỗi bảo mật : Thường xuyên áp dụng các bản vá lỗi bảo mật cho các ứng dụng web và môi trường của chúng.
+
+Nhận thức về bảo mật và đánh giá mã nguồn
+
+Tiến hành rà soát mã nguồn : Thường xuyên rà soát mã nguồn để phát hiện các lỗ hổng bảo mật, đặc biệt là mã xử lý đầu vào và phân tích cú pháp XML.
+Thúc đẩy đào tạo về bảo mật : Đảm bảo các nhà phát triển nhận thức được các thực tiễn lập trình an toàn, bao gồm cả các rủi ro liên quan đến việc phân tích cú pháp XML.
